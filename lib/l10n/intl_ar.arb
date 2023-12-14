@@ -1,7 +1,22 @@
 {
     "login":"تسجيل الدخول",
     "welcome":"اهلا بك",
+    "welcome_back":"اهلا بعودتك",
     "sign_in_to_continue":"قم بستجيل الدخول للمواصلة",
+    "sign_up_to_join":"أنشئ حساب للمواصلة",
+    "create_new_account":"حساب جديد؟",
+    "register":"إنشاء",
+    "email":"البريد الالكتروني",
+    "name":"الاسم",
+    "password":"كلمة المرور",
+    "invaild_credential":"بيانات دخول خاطئة",
+    "no_nternet":"ليس لديك أتصال بالانترنت",
+    "serverError":"خطأ بالخادم ،حاول لاحقا ",
+    "invaild_email":"بريد عير صالح",
+    "invaild_password":"كلمة المرور < 8 احرف",
+    "invaild_name_long":"الاسم طويل جدا",
+    "invaild_name_short":"الاسم قصير جدا",
+    "password_again":"تاكيد كلمة المرور ",
     "forgot_password":"هل نسيت كلمة السر؟"
     
 }

@@ -17,8 +17,33 @@ class AppTheme {
     },
   );
   static ThemeData lightTheme = ThemeData(
+    // appBarTheme: AppBarTheme(
+    //   systemOverlayStyle: SystemUiOverlayStyle(
+    //     statusBarColor: HexColor('#5D13E7'),
+    //     statusBarIconBrightness: Brightness.dark,
+    //   ),
+    // ),
     fontFamily: 'Inter',
     primarySwatch: mainAppColor,
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(
+        fontSize: 47,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 20,
+        color: Colors.black,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+    buttonTheme: const ButtonThemeData(
+      buttonColor: Colors.black,
+    ),
   );
   static ThemeData darkTheme = ThemeData(
     fontFamily: 'Inter',

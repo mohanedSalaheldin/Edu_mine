@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156624986105",
+    "project_id": "mo-e-learn",
+    "storage_bucket": "mo-e-learn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156624986105:android:336871be00d778538ca728",
+        "android_client_info": {
+          "package_name": "com.example.e_learning"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNEw1TtBARl3XFdEt8p3frZghhpCYlyUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

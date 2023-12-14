@@ -80,6 +80,166 @@ class S {
     );
   }
 
+  /// `Create new account`
+  String get create_new_account {
+    return Intl.message(
+      'Create new account',
+      name: 'create_new_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an account?`
+  String get have_an_account {
+    return Intl.message(
+      'Have an account?',
+      name: 'have_an_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome Back`
+  String get welcome_back {
+    return Intl.message(
+      'Welcome Back',
+      name: 'welcome_back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up to join`
+  String get sign_up_to_join {
+    return Intl.message(
+      'Sign up to join',
+      name: 'sign_up_to_join',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invaild Credential`
+  String get invaild_credential {
+    return Intl.message(
+      'Invaild Credential',
+      name: 'invaild_credential',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invaild Email`
+  String get invaild_email {
+    return Intl.message(
+      'Invaild Email',
+      name: 'invaild_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password < 8 characters`
+  String get invaild_password {
+    return Intl.message(
+      'Password < 8 characters',
+      name: 'invaild_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too long`
+  String get invaild_name_long {
+    return Intl.message(
+      'Too long',
+      name: 'invaild_name_long',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Too short`
+  String get invaild_name_short {
+    return Intl.message(
+      'Too short',
+      name: 'invaild_name_short',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Internet Connection!`
+  String get no_nternet {
+    return Intl.message(
+      'No Internet Connection!',
+      name: 'no_nternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Server Error, Please try later`
+  String get serverError {
+    return Intl.message(
+      'Server Error, Please try later',
+      name: 'serverError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password again`
+  String get password_again {
+    return Intl.message(
+      'Password again',
+      name: 'password_again',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot Password?`
   String get forgot_password {
     return Intl.message(

@@ -22,11 +22,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "create_new_account":
+            MessageLookupByLibrary.simpleMessage("حساب جديد؟"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة السر؟"),
+        "invaild_credential":
+            MessageLookupByLibrary.simpleMessage("بيانات دخول خاطئة"),
+        "invaild_email": MessageLookupByLibrary.simpleMessage("بريد عير صالح"),
+        "invaild_name_long":
+            MessageLookupByLibrary.simpleMessage("الاسم طويل جدا"),
+        "invaild_name_short":
+            MessageLookupByLibrary.simpleMessage("الاسم قصير جدا"),
+        "invaild_password":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور < 8 احرف"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "name": MessageLookupByLibrary.simpleMessage("الاسم"),
+        "no_nternet":
+            MessageLookupByLibrary.simpleMessage("ليس لديك أتصال بالانترنت"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "password_again":
+            MessageLookupByLibrary.simpleMessage("تاكيد كلمة المرور "),
+        "register": MessageLookupByLibrary.simpleMessage("إنشاء"),
+        "serverError":
+            MessageLookupByLibrary.simpleMessage("خطأ بالخادم ،حاول لاحقا "),
         "sign_in_to_continue":
             MessageLookupByLibrary.simpleMessage("قم بستجيل الدخول للمواصلة"),
-        "welcome": MessageLookupByLibrary.simpleMessage("اهلا بك")
+        "sign_up_to_join":
+            MessageLookupByLibrary.simpleMessage("أنشئ حساب للمواصلة"),
+        "welcome": MessageLookupByLibrary.simpleMessage("اهلا بك"),
+        "welcome_back": MessageLookupByLibrary.simpleMessage("اهلا بعودتك")
       };
 }

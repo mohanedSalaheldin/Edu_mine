@@ -22,11 +22,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "create_new_account":
+            MessageLookupByLibrary.simpleMessage("Create new account"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "have_an_account":
+            MessageLookupByLibrary.simpleMessage("Have an account?"),
+        "invaild_credential":
+            MessageLookupByLibrary.simpleMessage("Invaild Credential"),
+        "invaild_email": MessageLookupByLibrary.simpleMessage("Invaild Email"),
+        "invaild_name_long": MessageLookupByLibrary.simpleMessage("Too long"),
+        "invaild_name_short": MessageLookupByLibrary.simpleMessage("Too short"),
+        "invaild_password":
+            MessageLookupByLibrary.simpleMessage("Password < 8 characters"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "no_nternet":
+            MessageLookupByLibrary.simpleMessage("No Internet Connection!"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "password_again":
+            MessageLookupByLibrary.simpleMessage("Password again"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "serverError": MessageLookupByLibrary.simpleMessage(
+            "Server Error, Please try later"),
         "sign_in_to_continue":
             MessageLookupByLibrary.simpleMessage("Sign in to continue"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Welcome")
+        "sign_up_to_join":
+            MessageLookupByLibrary.simpleMessage("Sign up to join"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+        "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome Back")
       };
 }
