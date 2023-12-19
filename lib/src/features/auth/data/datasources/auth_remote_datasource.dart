@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -23,7 +24,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       {required String email, required String password}) async {
     UserCredential user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
-    print(user);
+    debugPrint(user.toString());
     return const UserModel(name: '', email: '', password: '', uID: '');
   }
 
@@ -91,7 +92,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   void _saveUserDataInFireStore(UserCredential userCredential,
       {String? name}) async {
-    print('DocumentSnapshot added with ID');
+    debugPrint('DocumentSnapshot added with ID');
     await _store
         .collection('users')
         .doc(

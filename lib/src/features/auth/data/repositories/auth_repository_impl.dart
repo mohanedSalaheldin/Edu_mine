@@ -4,6 +4,7 @@ import 'package:e_learning/src/core/utils/network/network_info.dart';
 import 'package:e_learning/src/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:e_learning/src/features/auth/domain/entities/user_entity.dart';
 import 'package:e_learning/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:flutter/material.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource authRemoteDataSource;
@@ -21,7 +22,7 @@ class AuthRepositoryImpl implements AuthRepository {
             email: email, password: password);
         return Right(re);
       } on Exception catch (e) {
-        print(e.toString());
+        debugPrint(e.toString());
         return Left(FirebaseFailure());
       }
     } else {
@@ -36,7 +37,7 @@ class AuthRepositoryImpl implements AuthRepository {
         UserEntiy re = await authRemoteDataSource.googleSignIn();
         return Right(re);
       } on Exception catch (e) {
-        print(e.toString());
+        debugPrint(e.toString());
         return Left(FirebaseFailure());
       }
     } else {
@@ -56,7 +57,7 @@ class AuthRepositoryImpl implements AuthRepository {
         UserEntiy re = await authRemoteDataSource.emailRegister(email: email,password: password,name: name);
         return Right(re);
       } on Exception catch (e) {
-        print(e.toString());
+        debugPrint(e.toString());
         return Left(FirebaseFailure());
       }
     } else {

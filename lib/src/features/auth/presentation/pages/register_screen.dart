@@ -1,11 +1,10 @@
 import 'package:e_learning/generated/l10n.dart';
 import 'package:e_learning/src/core/app_methods.dart';
 import 'package:e_learning/src/core/errors/error_strings.dart';
+import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_learning/src/features/auth/presentation/cubit/auth_state.dart';
-import 'package:e_learning/src/features/auth/presentation/pages/home_test.dart';
 import 'package:e_learning/src/features/auth/presentation/widgets/auth_widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_learning/src/injector.dart' as di;
@@ -19,14 +18,14 @@ class RegisterScreen extends StatelessWidget {
       create: (context) => di.sl<AuthCubit>(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthGoogleLoginSuccess ||
-              state is AuthEmailRegisterSuccess) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeTestScreen(),
-                ));
-          }
+          // if (state is AuthGoogleLoginSuccess ||
+          //     state is AuthEmailRegisterSuccess) {
+          //   Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const HomeTestScreen(),
+          //       ));
+          // }
 
           if (state is AuthGoogleLoginError) {
             if (state.msg == ErrorsString.noInternet) {
@@ -98,19 +97,15 @@ class RegisterScreen extends StatelessWidget {
                     icon: Icons.person_2_outlined,
                     hint: S.of(context).name,
                     validator: (p0) {
-                      if (p0 == null) {
+                      if (p0 == null || p0 == '') {
                         return S.of(context).invaild_name_short;
-                      }
-                      if (p0 == '') {
-                        return ' ';
-                      }
-                      if (p0.length > 16) {
+                      } else if (p0.length > 16) {
                         return S.of(context).invaild_name_long;
-                      }
-                      if (p0.length < 2) {
+                      } else if (p0.length < 2) {
                         return S.of(context).invaild_name_short;
+                      } else {
+                        return null;
                       }
-                      return null;
                     },
                     keyboardType: TextInputType.text,
                     controller: nameController,
@@ -131,23 +126,22 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   vericalGab(),
                   defaultTextFormField(
-                    context: context,
-                    icon: Icons.lock_outline,
-                    hint: S.of(context).password,
-                    ispassword: true,
-                    validator: (value) {
-                      if (value != null) {
-                        if (value.length < 8) {
-                          return S.of(context).invaild_password;
+                      context: context,
+                      icon: Icons.lock_outline,
+                      hint: S.of(context).password,
+                      ispassword: true,
+                      validator: (value) {
+                        if (value != null) {
+                          if (value.length < 8) {
+                            return S.of(context).invaild_password;
+                          }
+                        } else {
+                          return ' ';
                         }
-                      } else {
-                        return ' ';
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.text,
-                    controller: passwordController,
-                  ),
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      controller: passwordController),
                   vericalGab(),
                   defaultTextFormField(
                     context: context,
@@ -210,7 +204,7 @@ class RegisterScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     onpressed: () async {
-                      await FirebaseAuth.instance.signOut().then((value) {});
+                      // await FirebaseAuth.instance.signOut().then((value) {});
                       if (formKey.currentState!.validate()) {
                         AuthCubit.get(context).registerWithEmail(
                           name: nameController.text,
@@ -218,8 +212,6 @@ class RegisterScreen extends StatelessWidget {
                           password: passwordController.text,
                         );
                       }
-
-                      //  AuthCubit.get(context).loginWithGoogle();
                     },
                   ),
                 ],

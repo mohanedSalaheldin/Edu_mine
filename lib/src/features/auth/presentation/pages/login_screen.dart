@@ -1,9 +1,9 @@
 import 'package:e_learning/generated/l10n.dart';
 import 'package:e_learning/src/core/app_methods.dart';
 import 'package:e_learning/src/core/errors/error_strings.dart';
+import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:e_learning/src/features/auth/presentation/cubit/auth_state.dart';
-import 'package:e_learning/src/features/auth/presentation/pages/home_test.dart';
 import 'package:e_learning/src/features/auth/presentation/pages/register_screen.dart';
 import 'package:e_learning/src/features/auth/presentation/widgets/auth_widgets.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +19,13 @@ class LoginScreen extends StatelessWidget {
       create: (context) => di.sl<AuthCubit>(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthGoogleLoginSuccess || state is AuthEmailLoginSuccess ) {
-            Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeTestScreen(),
-                  ));
-          }
+          // if (state is AuthGoogleLoginSuccess || state is AuthEmailLoginSuccess ) {
+          //   Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => const HomeTestScreen(),
+          //         ));
+          // }
           if (state is AuthGoogleLoginError) {
             if (state.msg == ErrorsString.noInternet) {
               _showErrorSnackBar(context, S.of(context).no_nternet);
