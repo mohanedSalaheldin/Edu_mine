@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppTheme {
   static MaterialColor mainAppColor = const MaterialColor(
@@ -17,9 +18,39 @@ class AppTheme {
     },
   );
   static ThemeData lightTheme = ThemeData(
-    fontFamily: 'Inter',
-    primarySwatch: mainAppColor,
-  );
+      appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.black,
+          statusBarIconBrightness: Brightness.light,
+        ),
+      ),
+      fontFamily: 'Inter',
+      primarySwatch: mainAppColor,
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(
+          fontSize: 47,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+        ),
+        displaySmall: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      buttonTheme: const ButtonThemeData(
+        buttonColor: Colors.black,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.black,
+        showUnselectedLabels: true,
+        
+      ));
   static ThemeData darkTheme = ThemeData(
     fontFamily: 'Inter',
   );
