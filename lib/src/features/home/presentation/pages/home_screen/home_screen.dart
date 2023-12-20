@@ -1,51 +1,79 @@
 import 'package:e_learning/src/core/utils/consts/screen_sizes.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
+import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
+import 'package:e_learning/src/features/home/presentation/pages/home_screen/cubit/home_screen_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:e_learning/src/injector.dart' as di;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(),
-      body: Column(
-        children: [
-          _buildTopContainer(context),
-          vericalGab(),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    String uID = FirebaseAuth.instance.currentUser!.uid;
+    return BlocProvider(
+      create: (context) => di.sl<HomeScreenCubit>()
+        ..getUserName(uID: uID)
+        ..getUserCourses(uID: uID),
+      child: BlocConsumer<HomeScreenCubit, HomeScreenState>(
+        listener: (context, state) {
+          if (state is HomeScreenGetUserDataLoading) {
+            const LoadingScreen();
+          }
+        },
+        builder: (context, state) {
+          if (state is HomeScreenGetUserDataLoading) {
+            return const LoadingScreen();
+          }
+          return Scaffold(
+            // appBar: AppBar(),
+            body: Column(
               children: [
-                _buildTitleAndMore(context, 'My Courses'),
+                _buildTopContainer(context),
                 vericalGab(),
-                _buildMyCoursesSection(context),
-                vericalGab(),
-                _buildTitleAndMore(
-                  context,
-                  "Monitors of The Week",
-                ),
-                vericalGab(),
-                SizedBox(
-                  height: ScreenSizes.getHieght(context) / 10,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return _buildMonitorsCard(context);
-                    },
-                    separatorBuilder: (context, index) {
-                      return horizentalGab();
-                    },
-                    itemCount: 3,
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildTitleAndMore(context, 'My Courses'),
+                      vericalGab(),
+                      _buildMyCoursesSection(context),
+                      vericalGab(),
+                      _buildTitleAndMore(
+                        context,
+                        "Monitors of The Week",
+                      ),
+                      vericalGab(),
+                      _buildMonitorsSection(context),
+                      // _buildMonitorsCard(context),
+                    ],
                   ),
                 ),
-                // _buildMonitorsCard(context),
               ],
             ),
-          ),
-        ],
+          );
+        },
+      ),
+    );
+  }
+
+  SizedBox _buildMonitorsSection(BuildContext context) {
+    return SizedBox(
+      height: ScreenSizes.getHieght(context) / 10,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return _buildMonitorsCard(context);
+        },
+        separatorBuilder: (context, index) {
+          return horizentalGab();
+        },
+        itemCount: 3,
       ),
     );
   }
@@ -238,10 +266,6 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 horizentalGab(val: width),
-                // Container(
-                //   width: width,
-                //   color: Colors.white,
-                // ),
                 Text(
                   "#self_learn",
                   style: Theme.of(context).textTheme.displaySmall!.copyWith(
@@ -379,7 +403,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   vericalGab(val: 5),
                   Text(
-                    "Mohaned Salaheldin !🤘🏽",
+                    "${HomeScreenCubit.get(context).userName} !🤘🏽",
                     style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           fontWeight: FontWeight.normal,
                           color: Colors.white,
@@ -416,7 +440,10 @@ class HomeScreen extends StatelessWidget {
               ),
               const Spacer(),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // String uID = FirebaseAuth.instance.currentUser!.uid;
+                  // HomeScreenCubit.get(context).getUserName(uID: uID);
+                },
                 icon: const Icon(
                   Icons.arrow_forward_outlined,
                   color: Colors.white,

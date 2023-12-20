@@ -1,5 +1,5 @@
 import 'package:e_learning/src/features/allCourses/presentation/pages/all_courses_screen.dart';
-import 'package:e_learning/src/features/home/presentation/pages/home_screen.dart';
+import 'package:e_learning/src/features/home/presentation/pages/home_screen/home_screen.dart';
 import 'package:e_learning/src/features/myCourses/presentation/pages/my_learning_screen.dart';
 import 'package:e_learning/src/features/settings/presentation/pages/settings_screen.dart';
 import 'package:flutter/material.dart';
