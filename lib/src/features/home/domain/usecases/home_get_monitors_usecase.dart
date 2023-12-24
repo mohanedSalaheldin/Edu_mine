@@ -7,7 +7,7 @@ class HomeGetMonitorsUsecase {
   final HomeRepository repository;
 
   HomeGetMonitorsUsecase({required this.repository});
-  Future<Either<Failure, List<MonitorEntity>>>call({required String uID}) {
+  Future<Either<Failure, List<MonitorEntity>>>call() {
     return repository.getMonitors();
   }
 }

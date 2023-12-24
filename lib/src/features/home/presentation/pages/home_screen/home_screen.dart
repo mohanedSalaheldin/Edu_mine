@@ -1,9 +1,10 @@
 import 'package:e_learning/src/core/utils/consts/screen_sizes.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
+import 'package:e_learning/src/features/home/domain/entities/monitors_entity.dart';
+import 'package:e_learning/src/features/home/domain/entities/my_courses_entity.dart';
 import 'package:e_learning/src/features/home/presentation/pages/home_screen/cubit/home_screen_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -18,7 +19,8 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => di.sl<HomeScreenCubit>()
         ..getUserName(uID: uID)
-        ..getUserCourses(uID: uID),
+        ..getUserCourses(uID: uID)
+        ..getMonitors(),
       child: BlocConsumer<HomeScreenCubit, HomeScreenState>(
         listener: (context, state) {
           if (state is HomeScreenGetUserDataLoading) {
@@ -32,26 +34,31 @@ class HomeScreen extends StatelessWidget {
           return Scaffold(
             // appBar: AppBar(),
             body: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildTopContainer(context),
                 vericalGab(),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildTitleAndMore(context, 'My Courses'),
-                      vericalGab(),
-                      _buildMyCoursesSection(context),
-                      vericalGab(),
-                      _buildTitleAndMore(
-                        context,
-                        "Monitors of The Week",
-                      ),
-                      vericalGab(),
-                      _buildMonitorsSection(context),
-                      // _buildMonitorsCard(context),
-                    ],
+                  child: SizedBox(
+                    // height: ((ScreenSizes.getHieght(context) / 4) * 3) -
+                    //     ScreenSizes.getHieght(context) / 10,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildTitleAndMore(context, 'My Courses'),
+                        vericalGab(),
+                        _buildMyCoursesSection(context),
+                        vericalGab(),
+                        _buildTitleAndMore(
+                          context,
+                          "Monitors of The Week",
+                        ),
+                        vericalGab(),
+                        _buildMonitorsSection(context),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -62,18 +69,21 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  SizedBox _buildMonitorsSection(BuildContext context) {
+  SizedBox _buildMonitorsSection(
+    BuildContext context,
+  ) {
+    List<MonitorEntity> monitors = HomeScreenCubit.get(context).monitors;
     return SizedBox(
       height: ScreenSizes.getHieght(context) / 10,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return _buildMonitorsCard(context);
+          return _buildMonitorsCard(context, monitors[index]);
         },
         separatorBuilder: (context, index) {
           return horizentalGab();
         },
-        itemCount: 3,
+        itemCount: monitors.length,
       ),
     );
   }
@@ -119,22 +129,23 @@ class HomeScreen extends StatelessWidget {
   Widget _buildMyCoursesSection(BuildContext context) {
     double height = ScreenSizes.getHieght(context) / 2.6;
     double width = ScreenSizes.getWidth(context) / 1.45;
+    List<CourseEntity> courses = HomeScreenCubit.get(context).userCourses;
     return SizedBox(
       height: height,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return _myCourseCard(height, width, context);
+          return _myCourseCard(height, width, context, courses[index]);
         },
         separatorBuilder: (context, index) {
           return horizentalGab();
         },
-        itemCount: 3,
+        itemCount: courses.length,
       ),
     );
   }
 
-  Widget _buildMonitorsCard(BuildContext context) {
+  Widget _buildMonitorsCard(BuildContext context, MonitorEntity monitorEntity) {
     double height = ScreenSizes.getHieght(context) / 10;
     double width = ScreenSizes.getWidth(context) / 1.6;
     return Container(
@@ -164,7 +175,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Mohnaed Salah',
+                monitorEntity.name,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.w700,
                       fontSize: 20.0,
@@ -179,7 +190,7 @@ class HomeScreen extends StatelessWidget {
                     color: HexColor('#f0ac79'),
                   ),
                   Text(
-                    "4.9",
+                    monitorEntity.rate,
                     style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           color: Colors.grey,
                           fontWeight: FontWeight.normal,
@@ -187,7 +198,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                   ),
                   Text(
-                    "(1,435 Reviews)",
+                    "(${monitorEntity.reviews} Reviews)",
                     style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           color: Colors.grey,
                           fontWeight: FontWeight.normal,
@@ -203,7 +214,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _myCourseCard(double height, double width, BuildContext context) {
+  Widget _myCourseCard(double height, double width, BuildContext context,
+      CourseEntity courseEntity) {
+    int progress =
+        ((courseEntity.doneSections / courseEntity.allSections) * 100).toInt();
     return Container(
       height: height,
       width: width,
@@ -267,7 +281,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 horizentalGab(val: width),
                 Text(
-                  "#self_learn",
+                  courseEntity.tag,
                   style: Theme.of(context).textTheme.displaySmall!.copyWith(
                         color: Colors.grey,
                         fontWeight: FontWeight.normal,
@@ -276,7 +290,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 vericalGab(val: 5),
                 Text(
-                  "Learn how to  learn Learn how to  learn Learn how to  learn",
+                  courseEntity.courseName,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
@@ -296,7 +310,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     horizentalGab(),
                     Text(
-                      "Mohaned Salaheldin",
+                      courseEntity.instructor,
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
@@ -311,7 +325,7 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Section7/15",
+                      "Section${courseEntity.doneSections}/${courseEntity.allSections}",
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
@@ -327,14 +341,14 @@ class HomeScreen extends StatelessWidget {
                           width: 20.0,
                           height: 20.0,
                           child: CircularProgressIndicator.adaptive(
-                            value: .8,
+                            value: progress / 100,
                             valueColor:
                                 AlwaysStoppedAnimation(HexColor('#2ba3a5')),
                           ),
                         ),
                         horizentalGab(val: 5),
                         Text(
-                          "82%",
+                          "$progress%",
                           maxLines: 1,
                           overflow: TextOverflow.clip,
                           style: Theme.of(context)

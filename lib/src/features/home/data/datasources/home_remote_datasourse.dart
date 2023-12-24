@@ -26,38 +26,37 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<MonitorModel>> getMonitors() {
-    // TODO: implement getMonitors
-    // respose =
-    // await store.collection('users').doc(uID).get();
-
-    throw UnimplementedError();
+  Future<List<MonitorModel>> getMonitors() async {
+    debugPrint(
+        '------------------------(MONITORS IN DATASOURSES)-----------------------');
+    List<MonitorModel> monitors = [];
+    QuerySnapshot<Map<String, dynamic>> snapshot =
+        await store.collection('monitors').get();
+    monitors =
+        snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+      print(doc.data());
+      return MonitorModel.fromJosn(doc.data());
+    }).toList();
+    print(monitors);
+    debugPrint(
+        '------------------------(MONITORS IN DATASOURSES)-----------------------');
+    return monitors;
   }
 
   @override
   Future<List<CourseModel>> getUserCourses({required String uID}) async {
-    Stream<QuerySnapshot<Map<String, dynamic>>> snapshot =
-        // store.collection('users').doc(uID).collection('courses').get();
-
+    debugPrint(
+        '------------------------(COURSES IN DATASOURSES)-----------------------');
     List<CourseModel> courses = [];
-    snapshot.
-    snapshot.forEach((element) {
-      element.docs.map((e) {
-        print(e.data());
-        return courses.add(CourseModel.fromJosn(e.data()));
-      });
-    });
-    // docs.map(
-    //   (e) {
-    //     print(e.data());
-    //     return courses.add(CourseModel.fromJosn(e.data()));
-    //   },
-    // );
-    debugPrint('-----------------------------------------------');
-    debugPrint(courses.toString());
-    debugPrint('-----------------------------------------------');
+    QuerySnapshot<Map<String, dynamic>> snapshot =
+        await store.collection('users').doc(uID).collection('courses').get();
+    courses =
+        snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+      print(doc.data());
+      return CourseModel.fromJosn(doc.data());
+    }).toList();
+    print(courses);
+    debugPrint('------------------------(COURSES)-----------------------');
     return courses;
-
-    // throw UnimplementedError();
   }
 }

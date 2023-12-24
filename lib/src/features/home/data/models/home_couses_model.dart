@@ -9,6 +9,7 @@ class CourseModel extends CourseEntity {
       required super.allSections,
       required super.doneSections});
   factory CourseModel.fromJosn(Map<String, dynamic> json) {
+    print('fromJSOM');
     return CourseModel(
       courseName: json['course_name'],
       courseID: json['course_id'],

@@ -11,7 +11,8 @@ class HomeRepositoryImpl implements HomeRepository {
 
   HomeRepositoryImpl({required this.remoteDataSource});
   @override
-  Future<Either<Failure, HomeUserEntity>> getUserData({required String uID}) async{
+  Future<Either<Failure, HomeUserEntity>> getUserData(
+      {required String uID}) async {
     try {
       var res = await remoteDataSource.getUserData(uID: uID);
       return Right(res);
@@ -21,14 +22,23 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Either<Failure, List<MonitorEntity>>> getMonitors() {
-    // TODO: implement getMonitors
-    throw UnimplementedError();
+  Future<Either<Failure, List<MonitorEntity>>> getMonitors() async {
+    try {
+      var res = await remoteDataSource.getMonitors();
+      return Right(res);
+    } catch (e) {
+      return Left(FirebaseFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, List<CourseEntity>>> getUserCourses({required String uID}) {
-    // TODO: implement getUserCourse
-    throw UnimplementedError();
+  Future<Either<Failure, List<CourseEntity>>> getUserCourses(
+      {required String uID}) async {
+    try {
+      var res = await remoteDataSource.getUserCourses(uID: uID);
+      return Right(res);
+    } catch (e) {
+      return Left(FirebaseFailure());
+    }
   }
 }

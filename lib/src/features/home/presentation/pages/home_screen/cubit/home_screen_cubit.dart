@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:e_learning/src/core/errors/failures.dart';
 import 'package:e_learning/src/features/home/data/models/home_user_data_model.dart';
 import 'package:e_learning/src/features/home/domain/entities/home_user_entity.dart';
+import 'package:e_learning/src/features/home/domain/entities/monitors_entity.dart';
 import 'package:e_learning/src/features/home/domain/entities/my_courses_entity.dart';
+import 'package:e_learning/src/features/home/domain/usecases/home_get_monitors_usecase.dart';
 import 'package:e_learning/src/features/home/domain/usecases/home_get_user_courses_usecase.dart';
 import 'package:e_learning/src/features/home/domain/usecases/home_get_user_data_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -14,8 +16,11 @@ part 'home_screen_state.dart';
 class HomeScreenCubit extends Cubit<HomeScreenState> {
   final HomeGetUserDataUsecase getUserDataUsecase;
   final HomeGetUserCoursesUsecase getUserCoursesUsecase;
+  final HomeGetMonitorsUsecase getMonitorsUsecase;
   HomeScreenCubit(
-      {required this.getUserDataUsecase, required this.getUserCoursesUsecase})
+      {required this.getUserDataUsecase,
+      required this.getMonitorsUsecase,
+      required this.getUserCoursesUsecase})
       : super(HomeScreenInitial());
 
   static HomeScreenCubit get(BuildContext context) => BlocProvider.of(context);
@@ -42,6 +47,19 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     }, (courses) {
       userCourses = courses;
       emit(HomeScreenGetUserCoursesSuccess());
+    });
+  }
+
+  List<MonitorEntity> monitors = [];
+  void getMonitors() async {
+    emit(HomeScreenGetMonitorsLoading());
+    Either<Failure, List<MonitorEntity>> response =
+        await getMonitorsUsecase.call();
+    response.fold((failure) {
+      emit(HomeScreenGetMonitorsError());
+    }, (value) {
+      monitors = value;
+      emit(HomeScreenGetMonitorsSuccess());
     });
   }
 }

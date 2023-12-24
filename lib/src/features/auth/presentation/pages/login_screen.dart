@@ -6,6 +6,7 @@ import 'package:e_learning/src/features/auth/presentation/cubit/auth_cubit.dart'
 import 'package:e_learning/src/features/auth/presentation/cubit/auth_state.dart';
 import 'package:e_learning/src/features/auth/presentation/pages/register_screen.dart';
 import 'package:e_learning/src/features/auth/presentation/widgets/auth_widgets.dart';
+import 'package:e_learning/src/features/home/presentation/pages/home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_learning/src/injector.dart' as di;
@@ -19,13 +20,14 @@ class LoginScreen extends StatelessWidget {
       create: (context) => di.sl<AuthCubit>(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          // if (state is AuthGoogleLoginSuccess || state is AuthEmailLoginSuccess ) {
-          //   Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) => const HomeTestScreen(),
-          //         ));
-          // }
+          if (state is AuthGoogleLoginSuccess ||
+              state is AuthEmailLoginSuccess) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeLayoutScreen(),
+                ));
+          }
           if (state is AuthGoogleLoginError) {
             if (state.msg == ErrorsString.noInternet) {
               _showErrorSnackBar(context, S.of(context).no_nternet);
