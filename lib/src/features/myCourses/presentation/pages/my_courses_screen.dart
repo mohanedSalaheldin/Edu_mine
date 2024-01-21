@@ -1,7 +1,9 @@
 import 'package:e_learning/src/core/utils/consts/screen_sizes.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/core/utils/widgets/courses_lists_widget.dart';
+import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
 import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
+import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
 import 'package:e_learning/src/features/myCourses/presentation/widgets/my_course_card_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +29,13 @@ class MyLearnScreen extends StatelessWidget {
           return DefaultTabController(
             length: 2,
             child: Scaffold(
+              floatingActionButton: FloatingActionButton(onPressed: () {
+                MycoursesCubit.get(context)
+                    .getAllSections(courseID: 'Mu8aSB7RKh5YopxJFspG');
+              }),
               appBar: AppBar(
                 bottom: TabBar(
-                  onTap: (value) {
-                    // currentTap = value;
-
-                    // print(currentTap);
-                  },
+                  onTap: (value) {},
                   tabs: [
                     Tab(
                       child: Row(

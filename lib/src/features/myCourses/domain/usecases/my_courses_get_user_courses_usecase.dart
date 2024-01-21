@@ -11,3 +11,4 @@ class MyCoursesGetUserCoursesUsecase {
     return repository.getUserCourses(uID: uID);
   }
 }
+
