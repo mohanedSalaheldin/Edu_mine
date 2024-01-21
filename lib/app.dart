@@ -1,5 +1,6 @@
 import 'package:e_learning/generated/l10n.dart';
 import 'package:e_learning/src/config/themes/theme.dart';
+import 'package:e_learning/src/features/allCourses/presentation/pages/course_details_screen.dart';
 import 'package:e_learning/src/features/auth/presentation/pages/login_screen.dart';
 import 'package:e_learning/src/features/home/presentation/pages/home_layout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       title: 'E-Learning',
       debugShowCheckedModeBanner: false,
-      // home: const HomeLayoutScreen(),
+      // home: const CourseDetailsScreen(),
       home: _choseStartScreen(),
     );
   }
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       return const LoginScreen();
     } else {
       return const HomeLayoutScreen();
+      // return const YoutubePlayerDemoApp();
     }
   }
 }

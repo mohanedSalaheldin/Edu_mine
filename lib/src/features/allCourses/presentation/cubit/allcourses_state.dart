@@ -8,3 +8,21 @@ abstract class AllcoursesState extends Equatable {
 }
 
 class AllcoursesInitial extends AllcoursesState {}
+
+class GetAllcoursesLoading extends AllcoursesState {}
+
+class GetAllcoursesSuccess extends AllcoursesState {}
+
+class GetAllcoursesError extends AllcoursesState {}
+
+class EnrollInCourseLoading extends AllcoursesState {}
+
+class EnrollInCourseSuccess extends AllcoursesState {}
+
+class EnrollInCourseError extends AllcoursesState {}
+
+class IsCourseEnrolledLoading extends AllcoursesState {}
+
+class IsCourseEnrolledSuccess extends AllcoursesState {}
+
+class IsCourseEnrolledError extends AllcoursesState {}

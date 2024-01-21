@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/features/home/data/models/home_user_data_model.dart';
 import 'package:e_learning/src/features/home/domain/entities/home_user_entity.dart';
 import 'package:e_learning/src/features/home/domain/entities/monitors_entity.dart';
-import 'package:e_learning/src/features/home/domain/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/entities/my_courses_entity.dart';
 import 'package:e_learning/src/features/home/domain/usecases/home_get_monitors_usecase.dart';
 import 'package:e_learning/src/features/home/domain/usecases/home_get_user_courses_usecase.dart';
 import 'package:e_learning/src/features/home/domain/usecases/home_get_user_data_usecase.dart';

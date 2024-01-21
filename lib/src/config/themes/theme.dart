@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class AppTheme {
   static MaterialColor mainAppColor = const MaterialColor(
@@ -18,7 +19,37 @@ class AppTheme {
     },
   );
   static ThemeData lightTheme = ThemeData(
+      scaffoldBackgroundColor: HexColor('#f6f7f7'),
+      tabBarTheme: TabBarTheme(
+        labelColor: Colors.black,
+        indicatorColor: HexColor('#8eb93a'),
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(
+            color: HexColor('#bbe362'),
+            width: 4,
+          ),
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          // fontWeight: FontWeight.bold,
+        ),
+        labelStyle: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       appBarTheme: const AppBarTheme(
+        color: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        titleTextStyle: TextStyle(
+          fontSize: 28,
+          color: Colors.black,
+          fontWeight: FontWeight.w800,
+        ),
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.black,
           statusBarIconBrightness: Brightness.light,
@@ -49,7 +80,6 @@ class AppTheme {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
         showUnselectedLabels: true,
-        
       ));
   static ThemeData darkTheme = ThemeData(
     fontFamily: 'Inter',
