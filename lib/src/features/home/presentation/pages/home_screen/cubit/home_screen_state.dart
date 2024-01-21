@@ -20,3 +20,8 @@ final class HomeScreenGetUserCoursesError extends HomeScreenState {}
 final class HomeScreenGetUserCoursesSuccess extends HomeScreenState {}
 
 final class HomeScreenGetUserCoursesLoading extends HomeScreenState {}
+final class HomeScreenGetMonitorsError extends HomeScreenState {}
+
+final class HomeScreenGetMonitorsSuccess extends HomeScreenState {}
+
+final class HomeScreenGetMonitorsLoading extends HomeScreenState {}

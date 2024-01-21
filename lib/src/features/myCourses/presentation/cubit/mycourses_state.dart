@@ -8,3 +8,9 @@ abstract class MycoursesState extends Equatable {
 }
 
 class MycoursesInitial extends MycoursesState {}
+
+class MycoursesGetMyCoursesLoading extends MycoursesState {}
+
+class MycoursesGetMyCoursesSuccess extends MycoursesState {}
+
+class MycoursesGetMyCoursesError extends MycoursesState {}

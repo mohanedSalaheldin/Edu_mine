@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 Widget defaultTextFormField({
   required String hint,
   required String? Function(String?)? validator,
@@ -55,6 +53,7 @@ Widget defaultButton({
       child: FilledButton(
         onPressed: onpressed,
         style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(color),
           shape: MaterialStatePropertyAll(
             BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(
