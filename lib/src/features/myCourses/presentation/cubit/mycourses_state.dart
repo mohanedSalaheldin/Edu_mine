@@ -14,3 +14,9 @@ class MycoursesGetMyCoursesLoading extends MycoursesState {}
 class MycoursesGetMyCoursesSuccess extends MycoursesState {}
 
 class MycoursesGetMyCoursesError extends MycoursesState {}
+
+class GetAllSectionsLoading extends MycoursesState {}
+
+class GetAllSectionsSuccess extends MycoursesState {}
+
+class GetAllSectionsError extends MycoursesState {}

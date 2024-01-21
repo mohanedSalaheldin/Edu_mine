@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_learning/src/core/models/couses_model.dart';
+import 'package:e_learning/src/features/myCourses/data/models/section_model.dart';
 
 abstract class MyCoursesRemoteDataSource {
   Future<List<CourseModel>> getUserCourses({required String uID});
+  Future<List<SectionModel>> getAllCourseSections({required String courseID});
 }
 
 class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
@@ -50,20 +52,26 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
     }).toList();
     return courses;
   }
+
+  @override
+  Future<List<SectionModel>> getAllCourseSections(
+      {required String courseID}) async {
+    List<SectionModel> sections = [];
+    QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+        .instance
+        .collection('courses')
+        .doc(courseID)
+        .collection('lectures')
+        .get();
+
+    sections =
+        snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+      print('*********************************************');
+      print(doc.data());
+      print('*********************************************');
+      return SectionModel.fromJson(doc.data());
+    }).toList();
+    return sections;
+  }
 }
 
-/*
- @override
-  Future<List<CourseModel>> getAllCourses() async {
-    List<CourseModel> courses = [];
-    QuerySnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance.collection('courses').get();
-    courses =
-        snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-      return CourseModel.fromJosn(doc.data());
-    }).toList();
-    return courses;
-  }
-
-
- */

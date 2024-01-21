@@ -23,6 +23,7 @@ import 'package:e_learning/src/features/home/presentation/pages/home_screen/cubi
 import 'package:e_learning/src/features/myCourses/data/datasources/home_remote_datasourse.dart';
 import 'package:e_learning/src/features/myCourses/data/repositories/my_courses_repository_impl.dart';
 import 'package:e_learning/src/features/myCourses/domain/repositories/my_courses_repository.dart';
+import 'package:e_learning/src/features/myCourses/domain/usecases/get_all_sections_usecase.dart';
 import 'package:e_learning/src/features/myCourses/domain/usecases/my_courses_get_user_courses_usecase.dart';
 import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -44,8 +45,7 @@ Future<void> init() async {
       enrollInCourseUseCase: sl(),
       isEnrolledInCourseUseCase: sl()));
   sl.registerFactory(() => MycoursesCubit(
-     usecase: sl()));
-
+      getAllSectionsUsecase: sl(), myCoursesGetUserCoursesUsecase: sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepository>(
@@ -70,8 +70,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => EnrollInCourseUseCase(repository: sl()));
   sl.registerLazySingleton(() => IsEnrolledInCourseUseCase(repository: sl()));
   // -------------------------------(My Courses)--------------------------------
-  sl.registerLazySingleton(() => MyCoursesGetUserCoursesUsecase(repository: sl()));
-
+  sl.registerLazySingleton(
+      () => MyCoursesGetUserCoursesUsecase(repository: sl()));
+  sl.registerLazySingleton(() => GetAllSectionsUsecase(repository: sl()));
 
 /* --------------------Core-------------------- */
   // -------------------------------(Auth)--------------------------------
