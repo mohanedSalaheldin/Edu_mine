@@ -21,7 +21,9 @@ class CourseDetailsScreen extends StatelessWidget {
       create: (context) => di.sl<AllcoursesCubit>()
         ..isCourseAlreadyEnrolled(courseID: courseEntity.courseID),
       child: BlocConsumer<AllcoursesCubit, AllcoursesState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          
+        },
         builder: (context, state) {
           return Scaffold(
             floatingActionButton: Padding(

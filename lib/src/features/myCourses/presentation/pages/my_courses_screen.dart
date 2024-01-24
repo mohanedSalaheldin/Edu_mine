@@ -15,6 +15,7 @@ import 'package:e_learning/src/injector.dart' as di;
 class MyLearnScreen extends StatelessWidget {
   const MyLearnScreen({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     // int currentTap = 0;
@@ -29,10 +30,6 @@ class MyLearnScreen extends StatelessWidget {
           return DefaultTabController(
             length: 2,
             child: Scaffold(
-              floatingActionButton: FloatingActionButton(onPressed: () {
-                MycoursesCubit.get(context)
-                    .getAllSections(courseID: 'Mu8aSB7RKh5YopxJFspG');
-              }),
               appBar: AppBar(
                 bottom: TabBar(
                   onTap: (value) {},
@@ -87,4 +84,6 @@ class MyLearnScreen extends StatelessWidget {
       ),
     );
   }
+
+ 
 }

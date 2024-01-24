@@ -11,8 +11,6 @@ Widget buildCoursesListWidget({
   required double height,
   required List<CourseEntity> courses,
   required bool isMyCourses,
-  
-  
 }) {
   return Padding(
     padding: const EdgeInsets.all(20.0),
@@ -29,20 +27,22 @@ Widget buildCoursesListWidget({
               onTap: () {
                 if (!isMyCourses) {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            CourseDetailsScreen(courseEntity: courses[index]),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CourseDetailsScreen(
+                        courseEntity: courses[index],
+                      ),
+                    ),
+                  );
                 } else {
-                  MycoursesCubit.get(context)
-                      .getAllSections(courseID: courses[index].courseID);
-                    Navigator.push(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            CourseLecturesScreen(courseEntity: courses[index]),
-                      ));  
+                        builder: (context) => CourseLecturesScreen(
+                          courseEntity: courses[index],
+                          isLectureChanged: false,
+                        ),
+                      ));
                 }
               },
               isMyCourse: isMyCourses,

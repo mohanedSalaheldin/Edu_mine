@@ -20,3 +20,13 @@ class GetAllSectionsLoading extends MycoursesState {}
 class GetAllSectionsSuccess extends MycoursesState {}
 
 class GetAllSectionsError extends MycoursesState {}
+
+class ChangeCurrentSection extends MycoursesState {}
+
+class SetSectionAsWatchedSuccess extends MycoursesState {}
+
+class SetSectionAsWatchedError extends MycoursesState {}
+
+class SetSectionAsWatchedLoading extends MycoursesState {}
+
+class CurrentSectionIsEndedState extends MycoursesState {}

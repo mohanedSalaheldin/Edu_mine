@@ -1,5 +1,6 @@
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -9,7 +10,14 @@ Widget myCourseCard(double height, double width, BuildContext context,
       ((courseEntity.doneSections / courseEntity.allSections) * 100).toInt();
   return InkWell(
     onTap: () {
-      print('Hi from myCourses');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CourseLecturesScreen(
+              courseEntity: courseEntity,
+              isLectureChanged: false,
+            ),
+          ));
     },
     child: Container(
       height: height,

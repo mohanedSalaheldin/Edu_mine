@@ -11,6 +11,7 @@ class DataEntery {
       'url': 'https://youtu.be/NDspie55GpI?si=QAJtp0cLy3IJt7CA',
       'number': 1,
       'isWatched': false,
+      'id': 'someID',
     };
     db
         .collection('courses')
