@@ -27,11 +27,11 @@ class AllCoursesScreen extends StatelessWidget {
               isMyCourses: false,
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              AllcoursesCubit.get(context).getAllCourses();
-            },
-          ),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     AllcoursesCubit.get(context).getAllCourses();
+          //   },
+          // ),
         ),
       ),
     );

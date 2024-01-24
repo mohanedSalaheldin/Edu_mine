@@ -43,10 +43,13 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     }).toList();
 
     List<CourseModel> allCourses = await _getAllCourses();
-    for (CourseModel elementOfAll in allCourses) {
-      for (var elementOfEnrolled in enrolledCourses) {
-        if (elementOfEnrolled['courseID'] == elementOfAll.courseID) {
-          coursesModels.add(CourseModel(
+    if (enrolledCourses.isEmpty) {
+      return allCourses;
+    } else {
+      for (CourseModel elementOfAll in allCourses) {
+        for (var elementOfEnrolled in enrolledCourses) {
+          if (elementOfEnrolled['courseID'] == elementOfAll.courseID) {
+            coursesModels.add(CourseModel(
               courseName: elementOfAll.courseName,
               courseID: elementOfAll.courseID,
               tag: elementOfAll.tag,
@@ -56,11 +59,13 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
               rate: elementOfAll.rate,
               reviews: elementOfAll.reviews,
               poster: elementOfAll.poster,
-              description: elementOfAll.description));
+              description: elementOfAll.description,
+            ));
+          }
         }
       }
+      return coursesModels;
     }
-    return coursesModels;
   }
 
   Future<List<CourseModel>> _getAllCourses() async {
@@ -74,19 +79,3 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     return courses;
   }
 }
-
-/*
- @override
-  Future<List<CourseModel>> getAllCourses() async {
-    List<CourseModel> courses = [];
-    QuerySnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance.collection('courses').get();
-    courses =
-        snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-      return CourseModel.fromJosn(doc.data());
-    }).toList();
-    return courses;
-  }
-
-
- */
