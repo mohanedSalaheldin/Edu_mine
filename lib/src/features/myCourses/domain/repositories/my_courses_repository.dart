@@ -6,4 +6,5 @@ import 'package:e_learning/src/features/myCourses/domain/entities/section_entity
 abstract class MyCoursesRepository {
   Future<Either<Failure, List<CourseEntity>>> getUserCourses({required String uID});
   Future<Either<Failure, List<SectionEntity>>> getAllSections({required String courseID});
+  Future<Either<Failure, Unit>> setSectionAsWatched({required String courseID,required String sectionURL});
 }

@@ -30,9 +30,11 @@ class CoursesRemoteDataSourceImpl implements CoursesRemoteDataSource {
         .collection('users')
         .doc(uID)
         .collection('courses')
-        .add({
+        .doc(courseID)
+        .set({
       'courseID': courseID,
       'done_sections': 0,
+      'watchedSection': ["le1", "le2"],
     });
     return Future.value(unit);
   }

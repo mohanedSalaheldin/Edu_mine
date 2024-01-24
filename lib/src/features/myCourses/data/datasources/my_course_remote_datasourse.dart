@@ -1,14 +1,21 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:e_learning/src/core/models/couses_model.dart';
 import 'package:e_learning/src/features/myCourses/data/models/section_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class MyCoursesRemoteDataSource {
   Future<List<CourseModel>> getUserCourses({required String uID});
   Future<List<SectionModel>> getAllCourseSections({required String courseID});
+  Future<Unit> setSectionAsWatched(
+      {required String courseID, required String sectionURL});
 }
 
 class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
   FirebaseFirestore store = FirebaseFirestore.instance;
+  String uID = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Future<List<CourseModel>> getUserCourses({required String uID}) async {
@@ -45,7 +52,7 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
   Future<List<CourseModel>> _getAllCourses() async {
     List<CourseModel> courses = [];
     QuerySnapshot<Map<String, dynamic>> snapshot =
-        await FirebaseFirestore.instance.collection('courses').get();
+        await store.collection('courses').get();
     courses =
         snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
       return CourseModel.fromJosn(doc.data());
@@ -57,6 +64,13 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
   Future<List<SectionModel>> getAllCourseSections(
       {required String courseID}) async {
     List<SectionModel> sections = [];
+    DocumentSnapshot<Map<String, dynamic>> snip = await store
+        .collection('users')
+        .doc(uID)
+        .collection('courses')
+        .doc(courseID)
+        .get();
+    List watchedLectures = snip.data()!['watchedSection'];
     QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
         .instance
         .collection('courses')
@@ -64,14 +78,57 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
         .collection('lectures')
         .get();
 
+// isWatched
     sections =
         snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-      print('*********************************************');
-      print(doc.data());
-      print('*********************************************');
-      return SectionModel.fromJson(doc.data());
+      Map<String, dynamic> data = doc.data();
+
+      if (watchedLectures.contains(data['url'])) {
+        data['isWatched'] = true;
+      } else {
+        data['isWatched'] = false;
+      }
+      // data['isWatched'] =
+      return SectionModel.fromJson(data);
     }).toList();
+
+    // for (var element in sections) {
+    //   if (watchedLectures.contains(element.url)) {}
+    // }
     return sections;
   }
-}
 
+  @override
+  Future<Unit> setSectionAsWatched({
+    required String courseID,
+    required String sectionURL,
+  }) async {
+    // print(uID);
+    DocumentSnapshot<Map<String, dynamic>> snip = await store
+        .collection('users')
+        .doc(uID)
+        .collection('courses')
+        .doc(courseID)
+        .get();
+
+    List watchedLectures = snip.data()!['watchedSection'];
+    Map<String, dynamic> data = snip.data()!;
+    watchedLectures.add(sectionURL);
+    data['watchedSection'] = watchedLectures;
+    data['done_sections'] = watchedLectures.length;
+
+    store
+        .collection('users')
+        .doc(uID)
+        .collection('courses')
+        .doc(courseID)
+        .set(data)
+        .then((value) {
+      // print('*********************************************');
+      // print(sectionURL);
+      // print('*********************************************');
+    });
+
+    return Future.value(unit);
+  }
+}
