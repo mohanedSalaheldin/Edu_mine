@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         buildTitleAndMore(
                           context,
-                          'My Courses',
+                          'Latest Courses',
                         ),
                         vericalGab(),
                         buildMyCoursesSection(context),

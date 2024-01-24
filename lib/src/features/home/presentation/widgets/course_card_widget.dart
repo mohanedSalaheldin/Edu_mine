@@ -1,13 +1,19 @@
+import 'package:e_learning/src/core/utils/methods/choose_color.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
 import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-Widget myCourseCard(double height, double width, BuildContext context,
-    CourseEntity courseEntity) {
+Widget myCourseCard(
+  double height,
+  double width,
+  BuildContext context,
+  CourseEntity courseEntity,
+) {
   int progress =
       ((courseEntity.doneSections / courseEntity.allSections) * 100).toInt();
+  int userCoursesIsEmptyCode = 404;
   return InkWell(
     onTap: () {
       Navigator.push(
@@ -46,10 +52,10 @@ Widget myCourseCard(double height, double width, BuildContext context,
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  HexColor('#23629f'),
-                  HexColor('#21659e'),
-                  HexColor('#0d9699'),
-                ],
+        HexColor('#23629f'),
+        HexColor('#21659e'),
+        HexColor('#0d9699'),
+      ],
               ),
             ),
             child: Row(
@@ -125,43 +131,51 @@ Widget myCourseCard(double height, double width, BuildContext context,
                 Row(
                   children: [
                     Text(
-                      "Section${courseEntity.doneSections}/${courseEntity.allSections}",
+                      courseEntity.doneSections == userCoursesIsEmptyCode
+                          ? '${courseEntity.allSections} Sections'
+                          : "${courseEntity.doneSections}/${courseEntity.allSections}",
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: Colors.grey,
+                            color: const Color.fromARGB(255, 158, 158, 158),
                             fontWeight: FontWeight.w600,
                             fontSize: 18.0,
                           ),
                     ),
                     const Spacer(),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 20.0,
-                          height: 20.0,
-                          child: CircularProgressIndicator.adaptive(
-                            value: progress / 100,
-                            valueColor:
-                                AlwaysStoppedAnimation(HexColor('#2ba3a5')),
-                          ),
-                        ),
-                        horizentalGab(val: 5),
-                        Text(
-                          "$progress%",
-                          maxLines: 1,
-                          overflow: TextOverflow.clip,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                                color: HexColor('#2ba3a5'),
-                                fontWeight: FontWeight.normal,
-                                fontSize: 18.0,
+                    courseEntity.doneSections == userCoursesIsEmptyCode
+                        ? const SizedBox()
+                        : Row(
+                            children: [
+                              SizedBox(
+                                width: 20.0,
+                                height: 20.0,
+                                child: CircularProgressIndicator.adaptive(
+                                  // value: progress / 100,
+                                  value: (courseEntity.doneSections /
+                                          courseEntity.allSections)
+                                      .toDouble(),
+                                  backgroundColor: HexColor('#bedddd'),
+                                  valueColor: AlwaysStoppedAnimation(
+                                      HexColor('#2ba3a5')),
+                                ),
                               ),
-                        ),
-                      ],
-                    ),
+                              horizentalGab(val: 5),
+                              Text(
+                                "$progress%",
+                                maxLines: 1,
+                                overflow: TextOverflow.clip,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(
+                                      color: HexColor('#2ba3a5'),
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18.0,
+                                    ),
+                              ),
+                            ],
+                          ),
                   ],
                 ),
               ],

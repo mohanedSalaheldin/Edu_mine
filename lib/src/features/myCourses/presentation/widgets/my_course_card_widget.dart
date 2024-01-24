@@ -1,4 +1,5 @@
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/utils/methods/choose_color.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -160,7 +161,7 @@ Widget buildMyCouseCard({
                     Text(
                       isMyCourse
                           ? "${courseEntity.doneSections}/${courseEntity.allSections}"
-                          : '18 Section',
+                          : '${courseEntity.allSections} Sections',
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
@@ -177,7 +178,10 @@ Widget buildMyCouseCard({
                                 width: 20.0,
                                 height: 20.0,
                                 child: CircularProgressIndicator.adaptive(
-                                  value: .60,
+                                  value: (courseEntity.doneSections /
+                                          courseEntity.allSections)
+                                      .toDouble(),
+                                  backgroundColor: HexColor('#bedddd'),
                                   valueColor: AlwaysStoppedAnimation(
                                       HexColor('#2ba3a5')),
                                 ),

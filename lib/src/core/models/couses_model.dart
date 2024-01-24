@@ -22,7 +22,7 @@ class CourseModel extends CourseEntity {
       tag: json['tag'],
       instructor: json['instructor'],
       allSections: json['#ofLecture'],
-      doneSections: json['done_sections'] ?? 8,
+      doneSections: json['done_sections'] ?? 404,
       description: json['description'],
     );
   }

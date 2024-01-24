@@ -1,5 +1,5 @@
 import 'package:e_learning/generated/l10n.dart';
-import 'package:e_learning/src/core/app_methods.dart';
+import 'package:e_learning/src/core/utils/methods/app_methods.dart';
 import 'package:e_learning/src/core/errors/error_strings.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/features/auth/presentation/cubit/auth_cubit.dart';

@@ -1,3 +1,4 @@
+import 'package:e_learning/data_entery.dart';
 import 'package:e_learning/src/features/home/presentation/cubit/courses_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,9 @@ class HomeLayoutScreen extends StatelessWidget {
           var cubit = CoursesCubit.get(context);
 
           return Scaffold(
+            // floatingActionButton: FloatingActionButton(onPressed: () {
+            //   DataEntery.addLecture();
+            // }),
             body: SafeArea(child: cubit.screens[cubit.currentIndex]),
             bottomNavigationBar: _bulidNavBar(cubit),
           );
