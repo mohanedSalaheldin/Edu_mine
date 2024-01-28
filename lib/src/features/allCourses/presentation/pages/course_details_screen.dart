@@ -1,9 +1,15 @@
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/errors/error_strings.dart';
+import 'package:e_learning/src/core/utils/consts/constatnts.dart';
 import 'package:e_learning/src/core/utils/consts/screen_sizes.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
+import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
+import 'package:e_learning/src/core/utils/widgets/no_connection_screen.dart';
 import 'package:e_learning/src/core/utils/widgets/see_more_text_widget.dart';
+import 'package:e_learning/src/core/utils/widgets/server_error_screen.dart';
 import 'package:e_learning/src/features/allCourses/presentation/cubit/allcourses_cubit.dart';
 import 'package:e_learning/src/features/auth/presentation/widgets/auth_widgets.dart';
+import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -23,6 +29,20 @@ class CourseDetailsScreen extends StatelessWidget {
       child: BlocConsumer<AllcoursesCubit, AllcoursesState>(
         listener: (context, state) {},
         builder: (context, state) {
+          if (state is GetAllcoursesLoading ||
+              state is IsCourseEnrolledLoading) {
+            return const LoadingScreen();
+          }
+          if (state is IsCourseEnrolledError) {
+            return state.msg == ErrorsString.noInternet
+                ? const NoConnectionScreen()
+                : const ServerErrorScreen();
+          }
+          if (state is EnrollInCourseError) {
+            return state.msg == ErrorsString.noInternet
+                ? const NoConnectionScreen()
+                : const ServerErrorScreen();
+          }
           return Scaffold(
             floatingActionButton: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -37,9 +57,7 @@ class CourseDetailsScreen extends StatelessWidget {
                       : 'Enroll',
                 ),
                 onpressed: AllcoursesCubit.get(context).enrollmentCheckResult
-                    ? () {
-                        // print(courseEntity.courseID);
-                      }
+                    ? () {}
                     : () {
                         AllcoursesCubit.get(context)
                           ..enrollInCourse(courseID: courseEntity.courseID)
@@ -71,9 +89,11 @@ class CourseDetailsScreen extends StatelessWidget {
                           alignment: Alignment.bottomLeft,
                           child: Container(
                             height: height - (height / 2.8),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
+                            decoration: BoxDecoration(
+                              color: isAppThemeIsDark
+                                  ? HexColor('#252727')
+                                  : HexColor('#ffffff'),
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(
                                   30,
                                 ),
@@ -169,15 +189,17 @@ class CourseDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         Align(
-                          alignment: Alignment.topLeft,
+                          alignment: AlignmentDirectional.topStart,
                           child: GestureDetector(
                             onTap: () {
                               Navigator.pop(context);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.grey[200],
+                              child: FloatingActionButton.small(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 child: const Icon(
                                   Icons.arrow_back,
                                   // color: HexColor('#f0ac79'),
@@ -222,6 +244,7 @@ class IconWithStatisticWidget extends StatelessWidget {
             size: 30,
           ),
         ),
+        horizentalGab(val: 5.0),
         Text(
           statistics,
           style: Theme.of(context).textTheme.displaySmall!.copyWith(

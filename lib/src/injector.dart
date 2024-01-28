@@ -27,6 +27,7 @@ import 'package:e_learning/src/features/myCourses/domain/usecases/get_all_sectio
 import 'package:e_learning/src/features/myCourses/domain/usecases/my_courses_get_user_courses_usecase.dart';
 import 'package:e_learning/src/features/myCourses/domain/usecases/set_section_as_watched_usecase.dart';
 import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
+import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -49,16 +50,17 @@ Future<void> init() async {
       setSectionAsWatchedUseCase: sl(),
       getAllSectionsUsecase: sl(),
       myCoursesGetUserCoursesUsecase: sl()));
+  sl.registerFactory(() => SettingsCubit());
 
   // Repository
   sl.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(authRemoteDataSource: sl(), networkInfo: sl()));
   sl.registerLazySingleton<HomeRepository>(
-      () => HomeRepositoryImpl(remoteDataSource: sl()));
+      () => HomeRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()));
   sl.registerLazySingleton<CoursesRepository>(
-      () => CoursesRepositoryImpl(dataSource: sl()));
+      () => CoursesRepositoryImpl(dataSource: sl(), networkInfo: sl()));
   sl.registerLazySingleton<MyCoursesRepository>(
-      () => MyCoursesRepositoryImpl(remoteDataSource: sl()));
+      () => MyCoursesRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()));
   // UseCases
   // -------------------------------(Auth)--------------------------------
   sl.registerLazySingleton(() => LoginUseCase(authRepository: sl()));

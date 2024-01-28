@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/errors/error_strings.dart';
 import 'package:e_learning/src/core/errors/failures.dart';
 import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
 import 'package:e_learning/src/features/myCourses/domain/repositories/my_courses_repository.dart';
@@ -29,7 +30,11 @@ class MycoursesCubit extends Cubit<MycoursesState> {
     Either<Failure, List<CourseEntity>> response =
         await myCoursesGetUserCoursesUsecase.call(uID: uID);
     response.fold((failure) {
-      emit(MycoursesGetMyCoursesError());
+      if (failure is OfflineFailure) {
+        emit(const MycoursesGetMyCoursesError(msg: ErrorsString.noInternet));
+      } else {
+        emit(const MycoursesGetMyCoursesError(msg: ErrorsString.serverError));
+      }
     }, (courses) {
       for (var element in courses) {
         if (element.doneSections == element.allSections) {
@@ -48,7 +53,11 @@ class MycoursesCubit extends Cubit<MycoursesState> {
     Either<Failure, List<SectionEntity>> response =
         await getAllSectionsUsecase.call(courseID: courseID);
     response.fold((failure) {
-      emit(GetAllSectionsError());
+      if (failure is OfflineFailure) {
+        emit(const GetAllSectionsError(msg: ErrorsString.noInternet));
+      } else {
+        emit(const GetAllSectionsError(msg: ErrorsString.serverError));
+      }
     }, (value) {
       sections = value;
       emit(GetAllSectionsSuccess());
@@ -63,7 +72,11 @@ class MycoursesCubit extends Cubit<MycoursesState> {
 
     res.fold(
       (failure) {
-        emit(SetSectionAsWatchedError());
+        if (failure is OfflineFailure) {
+          emit(const SetSectionAsWatchedError(msg: ErrorsString.noInternet));
+        } else {
+          emit(const SetSectionAsWatchedError(msg: ErrorsString.serverError));
+        }
       },
       (unit) {
         emit(SetSectionAsWatchedSuccess());

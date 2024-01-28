@@ -16,9 +16,6 @@ class HomeLayoutScreen extends StatelessWidget {
           var cubit = CoursesCubit.get(context);
 
           return Scaffold(
-            // floatingActionButton: FloatingActionButton(onPressed: () {
-            //   DataEntery.addLecture();
-            // }),
             body: SafeArea(child: cubit.screens[cubit.currentIndex]),
             bottomNavigationBar: _bulidNavBar(cubit),
           );

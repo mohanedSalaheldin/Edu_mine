@@ -10,12 +10,12 @@ bool passwordValid(password) {
   return regex.hasMatch(password);
 }
 
-ScaffoldFeatureController showError(
-    {required BuildContext context, required String txt}) {
+void showErrorSnackBar({required BuildContext context,required String txt}) {
   SnackBar snackBar = SnackBar(
+    backgroundColor: Colors.red,
     content: Text(
       txt,
     ),
   );
-  return ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

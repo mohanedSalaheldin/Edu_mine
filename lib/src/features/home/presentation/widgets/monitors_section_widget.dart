@@ -6,20 +6,20 @@ import 'package:e_learning/src/features/home/presentation/widgets/monitors_widge
 import 'package:flutter/material.dart';
 
 SizedBox buildMonitorsSection(
-    BuildContext context,
-  ) {
-    List<MonitorEntity> monitors = HomeScreenCubit.get(context).monitors;
-    return SizedBox(
-      height: ScreenSizes.getHieght(context) / 10,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return buildMonitorsCard(context, monitors[index]);
-        },
-        separatorBuilder: (context, index) {
-          return horizentalGab();
-        },
-        itemCount: monitors.length,
-      ),
-    );
-  }
+  BuildContext context,
+) {
+  List<MonitorEntity> monitors = HomeScreenCubit.get(context).monitors;
+  return SizedBox(
+    height: ScreenSizes.getHieght(context) / 10,
+    child: ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return buildMonitorsCard(context, monitors[index]);
+      },
+      separatorBuilder: (context, index) {
+        return horizentalGab(val: 20.0);
+      },
+      itemCount: monitors.length,
+    ),
+  );
+}

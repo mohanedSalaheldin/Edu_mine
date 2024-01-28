@@ -1,5 +1,11 @@
+import 'package:e_learning/generated/l10n.dart';
+import 'package:e_learning/src/core/errors/error_strings.dart';
+import 'package:e_learning/src/core/utils/methods/app_methods.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
+import 'package:e_learning/src/core/utils/widgets/no_connection_screen.dart';
+import 'package:e_learning/src/core/utils/widgets/server_error_screen.dart';
+import 'package:e_learning/src/features/home/presentation/pages/home_layout.dart';
 import 'package:e_learning/src/features/home/presentation/pages/home_screen/cubit/home_screen_cubit.dart';
 import 'package:e_learning/src/features/home/presentation/widgets/monitors_section_widget.dart';
 import 'package:e_learning/src/features/home/presentation/widgets/my_courses_section_widget.dart';
@@ -22,27 +28,37 @@ class HomeScreen extends StatelessWidget {
         ..getUserCourses(uID: uID)
         ..getMonitors(),
       child: BlocConsumer<HomeScreenCubit, HomeScreenState>(
-        listener: (context, state) {
-          if (state is HomeScreenGetUserDataLoading) {
-            const LoadingScreen();
-          }
-        },
+        listener: (context, state) {},
         builder: (context, state) {
-          if (state is HomeScreenGetUserDataLoading) {
+          if (state is HomeScreenGetUserDataLoading ||
+              state is HomeScreenGetMonitorsLoading ||
+              state is HomeScreenGetUserCoursesLoading) {
             return const LoadingScreen();
           }
+          if (state is HomeScreenGetUserCoursesError) {
+            return state.msg == ErrorsString.noInternet
+                ? const NoConnectionScreen()
+                : const ServerErrorScreen();
+          }
+          if (state is HomeScreenGetUserDataError) {
+            return state.msg == ErrorsString.noInternet
+                ? const NoConnectionScreen()
+                : const ServerErrorScreen();
+          }
+          if (state is HomeScreenGetMonitorsError) {
+            return state.msg == ErrorsString.noInternet
+                ? const NoConnectionScreen()
+                : const ServerErrorScreen();
+          }
           return Scaffold(
-            // appBar: AppBar(),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 buildTopContainer(context),
                 vericalGab(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
+                  padding: const EdgeInsetsDirectional.only(start: 20.0),
                   child: SizedBox(
-                    // height: ((ScreenSizes.getHieght(context) / 4) * 3) -
-                    //     ScreenSizes.getHieght(context) / 10,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,6 +76,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         vericalGab(),
                         buildMonitorsSection(context),
+                        vericalGab(),
                       ],
                     ),
                   ),

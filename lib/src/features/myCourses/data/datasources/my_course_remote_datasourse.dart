@@ -76,6 +76,7 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
         .collection('courses')
         .doc(courseID)
         .collection('lectures')
+        .orderBy('number')
         .get();
 
 // isWatched

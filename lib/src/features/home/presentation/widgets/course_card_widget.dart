@@ -1,7 +1,10 @@
+import 'package:e_learning/src/core/utils/consts/constatnts.dart';
 import 'package:e_learning/src/core/utils/methods/choose_color.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/features/allCourses/presentation/pages/course_details_screen.dart';
 import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
+import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -13,17 +16,26 @@ Widget myCourseCard(
 ) {
   int progress =
       ((courseEntity.doneSections / courseEntity.allSections) * 100).toInt();
-  int userCoursesIsEmptyCode = 404;
+
   return InkWell(
     onTap: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CourseLecturesScreen(
-              courseEntity: courseEntity,
-              isLectureChanged: false,
-            ),
-          ));
+      courseEntity.doneSections == userCoursesIsEmptyCode
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CourseDetailsScreen(
+                  courseEntity: courseEntity,
+                ),
+              ),
+            )
+          : Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CourseLecturesScreen(
+                  courseEntity: courseEntity,
+                  isLectureChanged: false,
+                ),
+              ));
     },
     child: Container(
       height: height,
@@ -42,20 +54,16 @@ Widget myCourseCard(
           Container(
             padding: const EdgeInsetsDirectional.all(10.0),
             height: height / 4,
-            // color: HexColor('#0c1c2c'),
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                  // bottomLeft: Radius.circular(15.0),
-                  // bottomRight: Radius.circular(15.0),
-                  ),
+              borderRadius: const BorderRadius.only(),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-        HexColor('#23629f'),
-        HexColor('#21659e'),
-        HexColor('#0d9699'),
-      ],
+                  HexColor('#23629f'),
+                  HexColor('#21659e'),
+                  HexColor('#0d9699'),
+                ],
               ),
             ),
             child: Row(
@@ -78,7 +86,7 @@ Widget myCourseCard(
             ),
           ),
           Container(
-            color: Colors.white,
+            color: isAppThemeIsDark ? HexColor('#252727') : HexColor('#ffffff'),
             height: (height - (height / 4)),
             padding: const EdgeInsetsDirectional.all(10.0),
             child: Column(

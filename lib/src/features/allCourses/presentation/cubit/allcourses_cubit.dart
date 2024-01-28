@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/errors/error_strings.dart';
 import 'package:e_learning/src/core/errors/failures.dart';
 import 'package:e_learning/src/features/allCourses/domain/usecases/enroll_in_course_usecase.dart';
 import 'package:e_learning/src/features/allCourses/domain/usecases/get_all_courses_usecase.dart';
@@ -29,13 +30,14 @@ class AllcoursesCubit extends Cubit<AllcoursesState> {
         await getAllCoursesUseCase.call();
     response.fold(
       (failure) {
-        emit(GetAllcoursesError());
+        if (failure is OfflineFailure) {
+          emit(const GetAllcoursesError(msg: ErrorsString.noInternet));
+        } else {
+          emit(const GetAllcoursesError(msg: ErrorsString.serverError));
+        }
       },
       (courses) {
         allCourses = courses;
-        // print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
-        // print(allCourses);
-        // print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
         emit(GetAllcoursesSuccess());
       },
     );
@@ -46,23 +48,31 @@ class AllcoursesCubit extends Cubit<AllcoursesState> {
     Either<Failure, Unit> response =
         await enrollInCourseUseCase.call(courseID: courseID);
     response.fold(
-      (l) {
-        emit(EnrollInCourseError());
+      (failure) {
+        if (failure is OfflineFailure) {
+          emit(const EnrollInCourseError(msg: ErrorsString.noInternet));
+        } else {
+          emit(const EnrollInCourseError(msg: ErrorsString.serverError));
+        }
       },
       (r) {
         emit(EnrollInCourseSuccess());
       },
     );
   }
-   
-    bool enrollmentCheckResult = false;
+
+  bool enrollmentCheckResult = false;
   void isCourseAlreadyEnrolled({required String courseID}) async {
     emit(IsCourseEnrolledLoading());
     Either<Failure, bool> response =
         await isEnrolledInCourseUseCase.call(courseID: courseID);
     response.fold(
-      (l) {
-        emit(IsCourseEnrolledError());
+      (failure) {
+        if (failure is OfflineFailure) {
+          emit(const IsCourseEnrolledError(msg: ErrorsString.noInternet));
+        } else {
+          emit(const IsCourseEnrolledError(msg: ErrorsString.serverError));
+        }
       },
       (r) {
         enrollmentCheckResult = r;

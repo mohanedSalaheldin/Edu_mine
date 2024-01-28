@@ -46,21 +46,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<UserModel> googleRegister() async {
-    // UserCredential userCredential =
-    //     await _signInWithGoogle().then((value) async {
-    //   print('DocumentSnapshot added with ID');
-    //   _store.collection('users').add(
-    //     {
-    //       'uID': value.user!.uid,
-    //       'name': value.additionalUserInfo!.username,
-    //       'email': value.user!.email,
-    //     },
-    //   ).then((DocumentReference doc) =>
-    //       print('DocumentSnapshot added with ID: ${doc.id}'));
-    //   return value;
-    // });
-
-// print(userCredential.credential.)
     return const UserModel(name: '', email: '', password: '', uID: '');
   }
 
@@ -68,8 +53,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> googleSignIn() async {
     UserCredential userCredential = await _signInWithGoogle();
     _saveUserDataInFireStore(userCredential);
-
-// print(userCredential.credential.)
     return const UserModel(name: '', email: '', password: '', uID: '');
   }
 

@@ -1,0 +1,2 @@
+
+int userCoursesIsEmptyCode = 404;

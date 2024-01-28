@@ -24,8 +24,8 @@ class AuthCubit extends Cubit<AuthState> {
     Either<Failure, UserEntiy> response =
         await loginUseCase.call(email: email, password: password);
     response.fold(
-      (l) {
-        if (l is OfflineFailure) {
+      (failure) {
+        if (failure is OfflineFailure) {
           emit(const AuthEmailLoginError(msg: ErrorsString.noInternet));
         } else {
           emit(const AuthEmailLoginError(msg: ErrorsString.invaildCredential));
@@ -45,8 +45,8 @@ class AuthCubit extends Cubit<AuthState> {
     Either<Failure, UserEntiy> response = await registerUseCase.call(
         email: email, password: password, name: name);
     response.fold(
-      (l) {
-        if (l is OfflineFailure) {
+      (failure) {
+        if (failure is OfflineFailure) {
           emit(const AuthEmailRegisterError(msg: ErrorsString.noInternet));
         } else {
           emit(const AuthEmailRegisterError(msg: ErrorsString.serverError));
@@ -62,8 +62,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthGoogleLoginLoading());
     Either<Failure, UserEntiy> response = await loginWithGoogleUseCase.call();
     response.fold(
-      (l) {
-        if (l is OfflineFailure) {
+      (failure) {
+        if (failure is OfflineFailure) {
           emit(const AuthGoogleLoginError(msg: ErrorsString.noInternet));
         } else {
           emit(const AuthGoogleLoginError(msg: ErrorsString.serverError));
