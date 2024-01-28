@@ -1,6 +1,10 @@
 import 'package:e_learning/data_entery.dart';
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/errors/error_strings.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
+import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
+import 'package:e_learning/src/core/utils/widgets/no_connection_screen.dart';
+import 'package:e_learning/src/core/utils/widgets/server_error_screen.dart';
 import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
 import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
 import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
@@ -22,11 +26,6 @@ Widget buildBody({
       ..getAllSections(courseID: courseEntity.courseID),
     child: BlocConsumer<MycoursesCubit, MycoursesState>(
       listener: (context, state) {
-        if (MycoursesCubit.get(context).sections == []) {
-          const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
         if (state is CurrentSectionIsEndedState) {
           print('***************************************');
           print('*****************(Ended)***************');
@@ -35,7 +34,16 @@ Widget buildBody({
       },
       builder: (context, state) {
         List<SectionEntity> sectionsList = MycoursesCubit.get(context).sections;
-
+        if (state is GetAllSectionsLoading) {
+          return const LoadingScreen();
+        }
+        if (state is GetAllSectionsError) {
+          if (state.msg == ErrorsString.noInternet) {
+            return const NoConnectionScreen();
+          } else {
+            return const ServerErrorScreen();
+          }
+        }
         return OrientationBuilder(
           builder: (context, orientation) {
             if (orientation == Orientation.landscape) {
@@ -45,15 +53,8 @@ Widget buildBody({
                       isChangeSection ? currentSectionURL : sectionsList[0].url,
                   courseID: courseEntity.courseID,
                 ),
-                // body: buildYouTube(
-                //   controller: controller,
-                //   context: context,
-                // ),
               );
             } else {
-              // String ytLinkToURL = YoutubePlayer.convertUrlToId(
-              //     isChangeSection ? currentSectionURL : sectionsList[0].url)!;
-
               return Scaffold(
                 body: SafeArea(
                   child: Column(
@@ -103,8 +104,7 @@ Widget buildBody({
                             context: context,
                             sectionEntity: sectionsList[index],
                             onTap: () {
-                              // controller.dispose();
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (ctx) => CourseLecturesScreen(

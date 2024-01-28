@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 Widget defaultTextFormField({
   required String hint,
@@ -13,23 +14,13 @@ Widget defaultTextFormField({
       validator: validator,
       controller: controller,
       obscureText: ispassword,
-      style: const TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.w500,
-      ),
+      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+            fontSize: 22,
+            fontWeight: FontWeight.w500,
+          ),
       keyboardType: keyboardType,
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
-        contentPadding: const EdgeInsets.all(20.0),
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
-        // hintText: hint,
         label: Text(hint),
       ),
     );
@@ -52,16 +43,7 @@ Widget defaultButton({
       ),
       child: FilledButton(
         onPressed: onpressed,
-        style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(color),
-          shape: MaterialStatePropertyAll(
-            BeveledRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                0,
-              ),
-            ),
-          ),
-        ),
+       
         child: content,
       ),
     );

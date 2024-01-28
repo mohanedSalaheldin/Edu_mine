@@ -4,7 +4,6 @@ import 'package:e_learning/src/core/utils/network/network_info.dart';
 import 'package:e_learning/src/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:e_learning/src/features/auth/domain/entities/user_entity.dart';
 import 'package:e_learning/src/features/auth/domain/repositories/auth_repository.dart';
-import 'package:flutter/material.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource authRemoteDataSource;
@@ -21,8 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
         UserEntiy re = await authRemoteDataSource.emailLogin(
             email: email, password: password);
         return Right(re);
-      } on Exception catch (e) {
-        debugPrint(e.toString());
+      } on Exception {
         return Left(FirebaseFailure());
       }
     } else {
@@ -36,8 +34,7 @@ class AuthRepositoryImpl implements AuthRepository {
       try {
         UserEntiy re = await authRemoteDataSource.googleSignIn();
         return Right(re);
-      } on Exception catch (e) {
-        debugPrint(e.toString());
+      } on Exception {
         return Left(FirebaseFailure());
       }
     } else {
@@ -45,40 +42,28 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-
-  
-
   @override
-  Future<Either<Failure, UserEntiy>> register(
-      {required String email, required String password,required String name,})async {
-     
-   if (await networkInfo.isConnected) {
+  Future<Either<Failure, UserEntiy>> register({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
+    if (await networkInfo.isConnected) {
       try {
-        UserEntiy re = await authRemoteDataSource.emailRegister(email: email,password: password,name: name);
+        UserEntiy re = await authRemoteDataSource.emailRegister(
+            email: email, password: password, name: name);
         return Right(re);
-      } on Exception catch (e) {
-        debugPrint(e.toString());
+      } on Exception {
         return Left(FirebaseFailure());
       }
     } else {
       return Left(OfflineFailure());
     }
   }
-  
-  @override
-  Future<Either<Failure, UserEntiy>> registerWithGoogle() {
-    // TODO: implement registerWithGoogle
-    throw UnimplementedError();
-  }
-  
+
   @override
   Future<Either<Failure, Unit>> signout() {
     // TODO: implement signout
     throw UnimplementedError();
   }
-  }
-
-  
-  
-  
-
+}

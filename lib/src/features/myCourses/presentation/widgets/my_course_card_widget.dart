@@ -1,6 +1,8 @@
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/utils/consts/constatnts.dart';
 import 'package:e_learning/src/core/utils/methods/choose_color.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
+import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -66,7 +68,7 @@ Widget buildMyCouseCard({
             ),
           ),
           Container(
-            color: Colors.white,
+            color:  isAppThemeIsDark ? HexColor('#252727') : HexColor('#ffffff'),
             height: (height - (height / 4)),
             padding: const EdgeInsetsDirectional.all(10.0),
             child: Column(
@@ -85,7 +87,7 @@ Widget buildMyCouseCard({
                 vericalGab(val: 5),
                 Text(
                   courseEntity.courseName,
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontWeight: FontWeight.w700,

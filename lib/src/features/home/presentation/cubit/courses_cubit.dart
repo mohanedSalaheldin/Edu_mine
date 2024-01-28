@@ -33,11 +33,11 @@ class CoursesCubit extends Cubit<CoursesState> {
     const BottomNavigationBarItem(
       label: 'Courses',
       icon: Icon(
-        Icons.label,
+        Icons.school_rounded,
       ),
     ),
     const BottomNavigationBarItem(
-      label: 'My Learn',
+      label: 'My Learning',
       icon: Icon(
         Icons.menu_book_rounded,
       ),

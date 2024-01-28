@@ -1,7 +1,11 @@
+import 'package:e_learning/src/core/errors/error_strings.dart';
 import 'package:e_learning/src/core/utils/consts/screen_sizes.dart';
 import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
 import 'package:e_learning/src/core/utils/widgets/courses_lists_widget.dart';
+import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
+import 'package:e_learning/src/core/utils/widgets/no_connection_screen.dart';
 import 'package:e_learning/src/core/utils/widgets/no_courses_screen.dart';
+import 'package:e_learning/src/core/utils/widgets/server_error_screen.dart';
 import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
 import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
 import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
@@ -20,7 +24,6 @@ class MyLearnScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // int currentTap = 0;
     double height = ScreenSizes.getHieght(context) / 3.5;
-    // double width = ScreenSizes.getWidth(context) / 1.45;
     return BlocProvider(
       create: (context) => di.sl<MycoursesCubit>()
         ..getUserCourses(uID: FirebaseAuth.instance.currentUser!.uid),
@@ -40,6 +43,7 @@ class MyLearnScreen extends StatelessWidget {
                         children: [
                           const Text(
                             'Ongoing',
+                            
                           ),
                           horizentalGab(
                             val: 5,
@@ -65,26 +69,10 @@ class MyLearnScreen extends StatelessWidget {
                 title: const Text('My Courses'),
               ),
               body: TabBarView(
-                //  "You are not enrolled in any course yet...Do it now!"
                 children: [
-                  MycoursesCubit.get(context).onGoingCourses.isEmpty
-                      ? const NoCoursesScreen(
-                          txt:
-                              'You are not enrolled in any course ...Do it now!')
-                      : buildCoursesListWidget(
-                          courses: MycoursesCubit.get(context).onGoingCourses,
-                          height: height,
-                          isMyCourses: true,
-                        ),
-                  MycoursesCubit.get(context).doneCourses.isEmpty
-                      ? const NoCoursesScreen(
-                          txt:
-                              'You have not completed any course yet ...Do it now!')
-                      : buildCoursesListWidget(
-                          courses: MycoursesCubit.get(context).doneCourses,
-                          height: height,
-                          isMyCourses: true,
-                        ),
+                  _mapStateToOngoingWidget(state, context, height),
+                  _mapStateToCompletedWidget(state, context, height),
+              
                 ],
               ),
             ),
@@ -92,5 +80,48 @@ class MyLearnScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Widget _mapStateToOngoingWidget(state, BuildContext context, double height) {
+    if (state is MycoursesGetMyCoursesLoading) {
+      return const LoadingScreen();
+    } else if (state is MycoursesGetMyCoursesError) {
+      if (state.msg == ErrorsString.noInternet) {
+        return const NoConnectionScreen();
+      } else {
+        return const ServerErrorScreen();
+      }
+    } else {
+      return MycoursesCubit.get(context).onGoingCourses.isEmpty
+          ? const NoCoursesScreen(
+              txt: 'You are not enrolled in any course ...Do it now!')
+          : buildCoursesListWidget(
+              courses: MycoursesCubit.get(context).onGoingCourses,
+              height: height,
+              isMyCourses: true,
+            );
+    }
+  }
+
+  Widget _mapStateToCompletedWidget(
+      state, BuildContext context, double height) {
+    if (state is MycoursesGetMyCoursesLoading) {
+      return const LoadingScreen();
+    } else if (state is MycoursesGetMyCoursesError) {
+      if (state.msg == ErrorsString.noInternet) {
+        return const NoConnectionScreen();
+      } else {
+        return const ServerErrorScreen();
+      }
+    } else {
+      return MycoursesCubit.get(context).doneCourses.isEmpty
+          ? const NoCoursesScreen(
+              txt: 'You have not completed any course yet ...Do it now!')
+          : buildCoursesListWidget(
+              courses: MycoursesCubit.get(context).doneCourses,
+              height: height,
+              isMyCourses: true,
+            );
+    }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:e_learning/src/core/entities/my_courses_entity.dart';
+import 'package:e_learning/src/core/utils/consts/constatnts.dart';
 
 class CourseModel extends CourseEntity {
   CourseModel(
@@ -22,7 +23,7 @@ class CourseModel extends CourseEntity {
       tag: json['tag'],
       instructor: json['instructor'],
       allSections: json['#ofLecture'],
-      doneSections: json['done_sections'] ?? 404,
+      doneSections: json['done_sections'] ?? userCoursesIsEmptyCode,
       description: json['description'],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_learning/src/core/errors/error_strings.dart';
 import 'package:e_learning/src/core/errors/failures.dart';
 import 'package:e_learning/src/features/home/domain/entities/home_user_entity.dart';
 import 'package:e_learning/src/features/home/domain/entities/monitors_entity.dart';
@@ -28,12 +29,21 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     emit(HomeScreenGetUserDataLoading());
     Either<Failure, HomeUserEntity> response =
         await getUserDataUsecase.call(uID: uID);
-    response.fold((failure) {
-      emit(HomeScreenGetUserDataError());
-    }, (model) {
-      userName = model.name;
-      emit(HomeScreenGetUserDataSuccess());
-    });
+    response.fold(
+      (failure) {
+        if (failure is OfflineFailure) {
+          emit(const HomeScreenGetUserDataError(msg: ErrorsString.noInternet));
+        } else {
+          emit(const HomeScreenGetUserDataError(
+              msg: ErrorsString.serverError));
+        }
+        // emit(HomeScreenGetUserDataError());
+      },
+      (model) {
+        userName = model.name;
+        emit(HomeScreenGetUserDataSuccess());
+      },
+    );
   }
 
   List<CourseEntity> userCourses = [];
@@ -41,12 +51,21 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     emit(HomeScreenGetUserCoursesLoading());
     Either<Failure, List<CourseEntity>> response =
         await getUserCoursesUsecase.call(uID: uID);
-    response.fold((failure) {
-      emit(HomeScreenGetUserCoursesError());
-    }, (courses) {
-      userCourses = courses;
-      emit(HomeScreenGetUserCoursesSuccess());
-    });
+    response.fold(
+      (failure) {
+        if (failure is OfflineFailure) {
+          emit(const HomeScreenGetUserCoursesError(
+              msg: ErrorsString.noInternet));
+        } else {
+          emit(const HomeScreenGetUserCoursesError(
+              msg: ErrorsString.serverError));
+        }
+      },
+      (courses) {
+        userCourses = courses;
+        emit(HomeScreenGetUserCoursesSuccess());
+      },
+    );
   }
 
   List<MonitorEntity> monitors = [];
@@ -54,11 +73,19 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     emit(HomeScreenGetMonitorsLoading());
     Either<Failure, List<MonitorEntity>> response =
         await getMonitorsUsecase.call();
-    response.fold((failure) {
-      emit(HomeScreenGetMonitorsError());
-    }, (value) {
-      monitors = value;
-      emit(HomeScreenGetMonitorsSuccess());
-    });
+    response.fold(
+      (failure) {
+        if (failure is OfflineFailure) {
+          emit(const HomeScreenGetMonitorsError(msg: ErrorsString.noInternet));
+        } else {
+          emit(const HomeScreenGetMonitorsError(
+              msg: ErrorsString.serverError));
+        }
+      },
+      (value) {
+        monitors = value;
+        emit(HomeScreenGetMonitorsSuccess());
+      },
+    );
   }
 }

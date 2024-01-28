@@ -5,15 +5,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'src/injector.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = const SimpleBlocObserver();
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: HexColor('#0c1c2c'),
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.black,
       statusBarBrightness: Brightness.light,
     ),
   );
@@ -23,8 +22,6 @@ void main() async {
   );
   runApp(const MyApp());
 }
-
-
 
 
 // #linguistics, #computer_science, #self_development

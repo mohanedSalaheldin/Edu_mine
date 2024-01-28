@@ -6,13 +6,16 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Center(
-        child: SpinKitWave(
-          color: Colors.white,
-          size: 50.0,
-          // controller: AnimationController(
-          //     vsync: this, duration: const Duration(milliseconds: 1200)),
+    return const Scaffold(
+      // backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Center(
+          child: SpinKitWave(
+            color: Colors.black,
+            size: 50.0,
+            // controller: AnimationController(
+            //     vsync: this, duration: const Duration(milliseconds: 1200)),
+          ),
         ),
       ),
     );
