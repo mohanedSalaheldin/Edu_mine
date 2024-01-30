@@ -1,4 +1,4 @@
-import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
+import '../../domain/entities/section_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 

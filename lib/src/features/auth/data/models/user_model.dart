@@ -1,4 +1,4 @@
-import 'package:e_learning/src/features/auth/domain/entities/user_entity.dart';
+import '../../domain/entities/user_entity.dart';
 
 class UserModel extends UserEntiy {
   const UserModel(

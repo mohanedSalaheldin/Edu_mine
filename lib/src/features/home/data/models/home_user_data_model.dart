@@ -1,4 +1,4 @@
-import 'package:e_learning/src/features/home/domain/entities/home_user_entity.dart';
+import '../../domain/entities/home_user_entity.dart';
 
 class HomeUserDataModel extends HomeUserEntity {
   HomeUserDataModel(

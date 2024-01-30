@@ -1,50 +1,92 @@
-import 'package:e_learning/src/config/themes/theme.dart';
-import 'package:e_learning/src/core/utils/consts/constatnts.dart';
-import 'package:e_learning/src/features/settings/presentation/cubit/settings_state.dart';
-import 'package:equatable/equatable.dart';
+import 'package:dartz/dartz.dart';
+import '../../../../config/themes/theme.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/utils/consts/constatnts.dart';
+import '../../domain/usecases/cache_lang_usecase.dart';
+import '../../domain/usecases/cache_theme_usecase.dart';
+import '../../domain/usecases/get_cached_lang_usecase.dart';
+import '../../domain/usecases/get_cached_theme_usecase.dart';
+import '../../domain/usecases/get_user_data_usecase.dart';
+import '../../domain/usecases/logout_usecase.dart';
+import 'settings_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hexcolor/hexcolor.dart';
-
 
 
 class SettingsCubit extends Cubit<SettingsState> {
-  SettingsCubit() : super(SettingsInitial());
+  SettingsCubit({
+    required this.getCachedLangUsecase,
+    required this.getCachedThemeUsecase,
+    required this.getUserDataUsecase,
+    required this.logOutUsecase,
+    required this.cacheAppLangUsecase,
+    required this.cacheAppThemeUsecase,
+  }) : super(SettingsInitial());
+
+  final GetCachedLangUsecase getCachedLangUsecase;
+  final GetCachedThemeUsecase getCachedThemeUsecase;
+  final SettingsGetUserDataUsecase getUserDataUsecase;
+  final LogOutUsecase logOutUsecase;
+  final CacheAppLangUsecase cacheAppLangUsecase;
+  final CacheAppThemeUsecase cacheAppThemeUsecase;
 
   static SettingsCubit get(BuildContext context) => BlocProvider.of(context);
 
   ThemeData appTheme = AppTheme.darkTheme;
-  void changeAppTheme() {
+  void getThemeFromCache() async {
+    Either<Failure, String> response = await getCachedThemeUsecase.call();
+    response.fold(
+      (failure) {},
+      (cachedThemeName) {
+        if (cachedThemeName == darkThemeCode) {
+          appTheme = AppTheme.darkTheme;
+        } else if (cachedThemeName == lightThemeCode) {
+          appTheme = AppTheme.lightTheme;
+        }
+        isAppThemeIsDark = appTheme == AppTheme.darkTheme;
+        emit(SettingsGetThemeFromCacheSuccessState());
+      },
+    );
+  }
+
+  void changeAppTheme() async {
     if (appTheme == AppTheme.darkTheme) {
       appTheme = AppTheme.lightTheme;
     } else {
       appTheme = AppTheme.darkTheme;
     }
     isAppThemeIsDark = appTheme == AppTheme.darkTheme;
+    String themeName = isAppThemeIsDark ? darkThemeCode : lightThemeCode;
+    await cacheAppThemeUsecase.call(themeName: themeName);
     emit(SettingsChangeThemeState());
   }
 
-  // ThemeData getCurrentTheme() {
-  //   ThemeData themeData = _isDark ? AppTheme.darkTheme : AppTheme.lightTheme;
-  //   emit(SettingsGetCurrentThemeState());
-  //   return themeData;
-  // }
-
-  String appLang = 'en';
-  void changeAppLang() {
-    if (appLang == 'en') {
-      appLang = 'ar';
-    } else {
-      appLang = 'en';
-    }
-    emit(SettingsChangeLangState());
+  String appLang = englishLangCode;
+  void getLangFromCache() async {
+    Either<Failure, String> response = await getCachedLangUsecase.call();
+    response.fold(
+      (failure) {},
+      (cachedLangName) async {
+        if (cachedLangName == arabicLangCode) {
+          appLang = arabicLangCode;
+        } else if (cachedLangName == englishLangCode) {
+          appLang = englishLangCode;
+        }
+        emit(SettingsGetLangFromCacheSuccessState());
+      },
+    );
   }
 
-  // String getCurrentLang() {
-  //   String lang = _isEnglish ? 'en' : 'ar';
-  //   emit(SettingsGetCurrentLangState());
-  //   return lang;
-  // }
+  void changeAppLang() async {
+    if (appLang == englishLangCode) {
+      appLang = arabicLangCode;
+    } else {
+      appLang = englishLangCode;
+    }
+
+    emit(SettingsChangeLangState());
+    await cacheAppLangUsecase.call(langCode: appLang);
+  }
 }
 
 bool isAppThemeIsDark = true;

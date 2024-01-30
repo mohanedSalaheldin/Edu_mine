@@ -1,4 +1,4 @@
-  import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
+import '../../../../core/utils/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 
 Row buildTitleAndMore(BuildContext context, String title) {

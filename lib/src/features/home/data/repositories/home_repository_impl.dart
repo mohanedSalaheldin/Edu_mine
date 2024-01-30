@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/core/utils/network/network_info.dart';
-import 'package:e_learning/src/features/home/data/datasources/my_courses_remote_datasourse.dart';
-import 'package:e_learning/src/features/home/domain/entities/home_user_entity.dart';
-import 'package:e_learning/src/features/home/domain/entities/monitors_entity.dart';
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/features/home/domain/repositories/home_repository.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/utils/network/network_info.dart';
+import '../datasources/my_courses_remote_datasourse.dart';
+import '../../domain/entities/home_user_entity.dart';
+import '../../domain/entities/monitors_entity.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../domain/repositories/home_repository.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
   final HomeRemoteDataSource remoteDataSource;

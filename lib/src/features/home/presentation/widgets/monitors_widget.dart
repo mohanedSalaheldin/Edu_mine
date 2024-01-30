@@ -1,7 +1,6 @@
-import 'package:e_learning/src/core/utils/consts/constatnts.dart';
-import 'package:e_learning/src/core/utils/consts/screen_sizes.dart';
-import 'package:e_learning/src/features/home/domain/entities/monitors_entity.dart';
-import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
+import '../../../../core/utils/consts/screen_sizes.dart';
+import '../../domain/entities/monitors_entity.dart';
+import '../../../settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 

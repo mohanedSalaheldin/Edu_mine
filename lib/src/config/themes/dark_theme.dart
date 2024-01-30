@@ -1,4 +1,4 @@
-import 'package:e_learning/src/config/themes/theme.dart';
+import 'theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -129,7 +129,7 @@ ThemeData getDarkTheme() => ThemeData(
         unselectedItemColor: Colors.grey,
         backgroundColor: HexColor('#252727'),
         selectedItemColor: Colors.white,
-        showUnselectedLabels: true,
+        showUnselectedLabels: false,
         selectedLabelStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,

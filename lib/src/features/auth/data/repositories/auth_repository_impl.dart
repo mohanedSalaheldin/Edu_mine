@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/core/utils/network/network_info.dart';
-import 'package:e_learning/src/features/auth/data/datasources/auth_remote_datasource.dart';
-import 'package:e_learning/src/features/auth/domain/entities/user_entity.dart';
-import 'package:e_learning/src/features/auth/domain/repositories/auth_repository.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/utils/network/network_info.dart';
+import '../datasources/auth_remote_datasource.dart';
+import '../../domain/entities/user_entity.dart';
+import '../../domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource authRemoteDataSource;
@@ -63,7 +63,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, Unit>> signout() {
-    // TODO: implement signout
     throw UnimplementedError();
   }
 }

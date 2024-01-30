@@ -11,7 +11,7 @@ void navigateAndKillTo(
 }
 
 void navigateTo({required BuildContext context, required Widget screen}) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) => screen,

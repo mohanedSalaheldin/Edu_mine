@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/features/auth/data/models/user_model.dart';
+
+import '../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> googleSignIn();
@@ -58,7 +59,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<Unit> signOut() {
-    // TODO: implement signOut
     throw UnimplementedError();
   }
 

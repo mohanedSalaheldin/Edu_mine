@@ -1,4 +1,4 @@
-import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
+import '../../domain/entities/section_entity.dart';
 
 class SectionModel extends SectionEntity {
   SectionModel({

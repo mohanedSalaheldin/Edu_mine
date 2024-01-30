@@ -1,14 +1,14 @@
-import 'package:e_learning/generated/l10n.dart';
-import 'package:e_learning/src/config/themes/theme.dart';
-import 'package:e_learning/src/features/auth/presentation/pages/login_screen.dart';
-import 'package:e_learning/src/features/home/presentation/pages/home_layout.dart';
-import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
-import 'package:e_learning/src/features/settings/presentation/cubit/settings_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:e_learning/src/injector.dart' as di;
+
+import 'generated/l10n.dart';
+import 'src/features/auth/presentation/pages/login_screen.dart';
+import 'src/features/home/presentation/pages/home_layout.dart';
+import 'src/features/settings/presentation/cubit/settings_cubit.dart';
+import 'src/features/settings/presentation/cubit/settings_state.dart';
+import 'src/injector.dart' as di;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -17,16 +17,16 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.sl<SettingsCubit>(),
+          create: (context) => di.sl<SettingsCubit>()
+            ..getLangFromCache()
+            ..getThemeFromCache(),
         ),
       ],
       child: BlocConsumer<SettingsCubit, SettingsState>(
         listener: (context, state) {
-          // TODO: implement listener
         },
         builder: (context, state) {
-          // var value = SettingsCubit.get(context).getCurrentLang();
-          // var theme = SettingsCubit.get(context).getCurrentTheme();
+      
 
           return MaterialApp(
             locale: Locale(SettingsCubit.get(context).appLang),

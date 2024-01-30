@@ -1,8 +1,8 @@
-import 'package:e_learning/src/core/utils/consts/screen_sizes.dart';
-import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/features/home/presentation/pages/home_screen/cubit/home_screen_cubit.dart';
-import 'package:e_learning/src/features/home/presentation/widgets/course_card_widget.dart';
+import '../../../../core/utils/consts/screen_sizes.dart';
+import '../../../../core/utils/widgets/app_widgets.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../pages/home_screen/cubit/home_screen_cubit.dart';
+import 'course_card_widget.dart';
 import 'package:flutter/material.dart';
 
 Widget buildMyCoursesSection(BuildContext context) {

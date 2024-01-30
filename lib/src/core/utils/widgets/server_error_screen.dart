@@ -1,5 +1,6 @@
-import 'package:e_learning/src/features/home/presentation/pages/home_layout.dart';
 import 'package:flutter/material.dart';
+
+import '../../../features/home/presentation/pages/home_layout.dart';
 
 class ServerErrorScreen extends StatelessWidget {
   const ServerErrorScreen({

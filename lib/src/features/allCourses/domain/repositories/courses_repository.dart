@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../../../core/errors/failures.dart';
 
 abstract class CoursesRepository {
   Future<Either<Failure, List<CourseEntity>>> getAllCourses();
