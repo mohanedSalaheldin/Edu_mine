@@ -1,5 +1,5 @@
-import 'package:e_learning/src/config/themes/dark_theme.dart';
-import 'package:e_learning/src/config/themes/light_theme.dart';
+import 'dark_theme.dart';
+import 'light_theme.dart';
 import 'package:flutter/material.dart';
 
 MaterialColor mainAppColor = const MaterialColor(

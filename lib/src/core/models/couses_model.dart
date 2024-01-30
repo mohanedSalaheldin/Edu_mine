@@ -1,5 +1,5 @@
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/utils/consts/constatnts.dart';
+import '../entities/my_courses_entity.dart';
+import '../utils/consts/constatnts.dart';
 
 class CourseModel extends CourseEntity {
   CourseModel(

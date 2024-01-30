@@ -1,9 +1,8 @@
-import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/models/couses_model.dart';
-import 'package:e_learning/src/features/myCourses/data/models/section_model.dart';
+import '../../../../core/models/couses_model.dart';
+import '../models/section_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class MyCoursesRemoteDataSource {

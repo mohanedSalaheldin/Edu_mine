@@ -1,10 +1,10 @@
-import 'package:e_learning/src/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:e_learning/generated/l10n.dart';
-import 'package:e_learning/src/config/routes/navigation.dart';
-import 'package:e_learning/src/core/utils/methods/app_methods.dart';
-import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
-import 'package:e_learning/src/features/auth/presentation/pages/login_screen.dart';
-import 'package:e_learning/src/features/auth/presentation/widgets/auth_widgets.dart';
+import '../cubit/auth_cubit.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../config/routes/navigation.dart';
+import '../../../../core/utils/methods/app_methods.dart';
+import '../../../../core/utils/widgets/app_widgets.dart';
+import '../pages/login_screen.dart';
+import 'auth_widgets.dart';
 import 'package:flutter/material.dart';
 
 SafeArea buildRegisterBody({
@@ -150,7 +150,6 @@ SafeArea buildRegisterBody({
                     S.of(context).register,
                   ),
                   onpressed: () async {
-                    // await FirebaseAuth.instance.signOut().then((value) {});
                     if (formKey.currentState!.validate()) {
                       AuthCubit.get(context).registerWithEmail(
                         name: nameController.text,

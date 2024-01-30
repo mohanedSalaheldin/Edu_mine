@@ -1,5 +1,4 @@
-import 'package:e_learning/data_entery.dart';
-import 'package:e_learning/src/features/home/presentation/cubit/courses_cubit.dart';
+import '../cubit/courses_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

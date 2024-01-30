@@ -1,17 +1,15 @@
-import 'package:e_learning/generated/l10n.dart';
-import 'package:e_learning/src/config/routes/navigation.dart';
-import 'package:e_learning/src/core/utils/methods/app_methods.dart';
-import 'package:e_learning/src/core/errors/error_strings.dart';
-import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
-import 'package:e_learning/src/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:e_learning/src/features/auth/presentation/cubit/auth_state.dart';
-import 'package:e_learning/src/features/auth/presentation/pages/register_screen.dart';
-import 'package:e_learning/src/features/auth/presentation/widgets/auth_widgets.dart';
-import 'package:e_learning/src/features/auth/presentation/widgets/login_body.dart';
-import 'package:e_learning/src/features/home/presentation/pages/home_layout.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../config/routes/navigation.dart';
+import '../../../../core/utils/methods/app_methods.dart';
+import '../../../../core/errors/error_strings.dart';
+import '../cubit/auth_cubit.dart';
+import '../cubit/auth_state.dart';
+
+import '../widgets/login_body.dart';
+import '../../../home/presentation/pages/home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:e_learning/src/injector.dart' as di;
+import '../../../../injector.dart' as di;
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

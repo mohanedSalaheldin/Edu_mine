@@ -1,10 +1,10 @@
-import 'package:e_learning/src/core/utils/consts/constatnts.dart';
-import 'package:e_learning/src/core/utils/methods/choose_color.dart';
-import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/features/allCourses/presentation/pages/course_details_screen.dart';
-import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
-import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
+import '../../../../config/routes/navigation.dart';
+import '../../../../core/utils/consts/constatnts.dart';
+import '../../../../core/utils/widgets/app_widgets.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../../allCourses/presentation/pages/course_details_screen.dart';
+import '../../../myCourses/presentation/pages/course_lectures_screen.dart.dart';
+import '../../../settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -20,22 +20,35 @@ Widget myCourseCard(
   return InkWell(
     onTap: () {
       courseEntity.doneSections == userCoursesIsEmptyCode
-          ? Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CourseDetailsScreen(
-                  courseEntity: courseEntity,
-                ),
+          ? navigateTo(
+              context: context,
+              screen: CourseDetailsScreen(
+                courseEntity: courseEntity,
               ),
             )
-          : Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CourseLecturesScreen(
-                  courseEntity: courseEntity,
-                  isLectureChanged: false,
-                ),
-              ));
+          //  Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => CourseDetailsScreen(
+          //         courseEntity: courseEntity,
+          //       ),
+          //     ),
+          //   )
+          : navigateTo(
+              context: context,
+              screen: CourseLecturesScreen(
+                courseEntity: courseEntity,
+                isLectureChanged: false,
+              ),
+            );
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => CourseLecturesScreen(
+      //         courseEntity: courseEntity,
+      //         isLectureChanged: false,
+      //       ),
+      //     ));
     },
     child: Container(
       height: height,

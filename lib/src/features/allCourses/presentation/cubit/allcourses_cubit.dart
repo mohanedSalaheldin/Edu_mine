@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/errors/error_strings.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/features/allCourses/domain/usecases/enroll_in_course_usecase.dart';
-import 'package:e_learning/src/features/allCourses/domain/usecases/get_all_courses_usecase.dart';
-import 'package:e_learning/src/features/allCourses/domain/usecases/is_inrolled_in_the_course_usecase.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../../../core/errors/error_strings.dart';
+import '../../../../core/errors/failures.dart';
+import '../../domain/usecases/enroll_in_course_usecase.dart';
+import '../../domain/usecases/get_all_courses_usecase.dart';
+import '../../domain/usecases/is_inrolled_in_the_course_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

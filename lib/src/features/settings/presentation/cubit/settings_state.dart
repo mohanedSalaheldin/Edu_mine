@@ -1,4 +1,3 @@
-
 abstract class SettingsState {
   // const SettingsState();
 
@@ -10,8 +9,16 @@ class SettingsInitial extends SettingsState {}
 
 class SettingsChangeThemeState extends SettingsState {}
 
-class SettingsGetCurrentThemeState extends SettingsState {}
-
 class SettingsChangeLangState extends SettingsState {}
 
-class SettingsGetCurrentLangState extends SettingsState {}
+class SettingsGetLangFromCacheSuccessState extends SettingsState {}
+
+class SettingsGetLangFromCacheErrorState extends SettingsState {}
+
+class SettingsGetLangFromCacheLoadingState extends SettingsState {}
+
+class SettingsGetThemeFromCacheSuccessState extends SettingsState {}
+
+class SettingsGetThemeFromCacheErrorState extends SettingsState {}
+
+class SettingsGetThemeFromCacheLoadingState extends SettingsState {}

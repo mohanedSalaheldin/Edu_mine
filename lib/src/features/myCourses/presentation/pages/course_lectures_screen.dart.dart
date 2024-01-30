@@ -1,16 +1,13 @@
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/errors/error_strings.dart';
-import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
-import 'package:e_learning/src/core/utils/widgets/no_connection_screen.dart';
-import 'package:e_learning/src/core/utils/widgets/server_error_screen.dart';
-import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
-import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
-import 'package:e_learning/src/features/myCourses/presentation/widgets/body_widget.dart';
-import 'package:e_learning/src/features/myCourses/presentation/widgets/youtube_player_widget.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../../../core/errors/error_strings.dart';
+import '../../../../core/utils/widgets/loading_screen.dart';
+import '../../../../core/utils/widgets/no_connection_screen.dart';
+import '../../../../core/utils/widgets/server_error_screen.dart';
+import '../cubit/mycourses_cubit.dart';
+import '../widgets/body_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'package:e_learning/src/injector.dart' as di;
+import '../../../../injector.dart' as di;
 
 class CourseLecturesScreen extends StatelessWidget {
   final CourseEntity courseEntity;

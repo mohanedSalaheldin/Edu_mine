@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
-import 'package:e_learning/src/features/myCourses/domain/repositories/my_courses_repository.dart';
+import '../../../../core/errors/failures.dart';
+import '../entities/section_entity.dart';
+import '../repositories/my_courses_repository.dart';
 
 class GetAllSectionsUsecase {
   final MyCoursesRepository repository;

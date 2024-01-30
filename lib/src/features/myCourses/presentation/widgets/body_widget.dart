@@ -1,20 +1,17 @@
-import 'package:e_learning/data_entery.dart';
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/errors/error_strings.dart';
-import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
-import 'package:e_learning/src/core/utils/widgets/loading_screen.dart';
-import 'package:e_learning/src/core/utils/widgets/no_connection_screen.dart';
-import 'package:e_learning/src/core/utils/widgets/server_error_screen.dart';
-import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
-import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
-import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
-import 'package:e_learning/src/features/myCourses/presentation/widgets/lecture_item_widget.dart';
-import 'package:e_learning/src/features/myCourses/presentation/widgets/youtube_player_widget.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../../../core/errors/error_strings.dart';
+import '../../../../core/utils/widgets/app_widgets.dart';
+import '../../../../core/utils/widgets/loading_screen.dart';
+import '../../../../core/utils/widgets/no_connection_screen.dart';
+import '../../../../core/utils/widgets/server_error_screen.dart';
+import '../../domain/entities/section_entity.dart';
+import '../cubit/mycourses_cubit.dart';
+import '../pages/course_lectures_screen.dart.dart';
+import 'lecture_item_widget.dart';
+import 'youtube_player_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:e_learning/src/injector.dart' as di;
-
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../../../../injector.dart' as di;
 
 Widget buildBody({
   required CourseEntity courseEntity,
@@ -26,11 +23,6 @@ Widget buildBody({
       ..getAllSections(courseID: courseEntity.courseID),
     child: BlocConsumer<MycoursesCubit, MycoursesState>(
       listener: (context, state) {
-        if (state is CurrentSectionIsEndedState) {
-          print('***************************************');
-          print('*****************(Ended)***************');
-          print('***************************************');
-        }
       },
       builder: (context, state) {
         List<SectionEntity> sectionsList = MycoursesCubit.get(context).sections;

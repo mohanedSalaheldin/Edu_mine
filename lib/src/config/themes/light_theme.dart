@@ -1,4 +1,4 @@
-import 'package:e_learning/src/config/themes/theme.dart';
+import 'theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -131,7 +131,7 @@ ThemeData getLightTheme() => ThemeData(
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
-        showUnselectedLabels: true,
+        showUnselectedLabels: false,
         selectedLabelStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,

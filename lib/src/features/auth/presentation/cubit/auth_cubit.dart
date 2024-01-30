@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/errors/error_strings.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/features/auth/domain/entities/user_entity.dart';
-import 'package:e_learning/src/features/auth/domain/usecases/login_usecase.dart';
-import 'package:e_learning/src/features/auth/domain/usecases/login_with_google_usecase.dart';
-import 'package:e_learning/src/features/auth/domain/usecases/register.dart';
-import 'package:e_learning/src/features/auth/presentation/cubit/auth_state.dart';
+import '../../../../core/errors/error_strings.dart';
+import '../../../../core/errors/failures.dart';
+import '../../domain/entities/user_entity.dart';
+import '../../domain/usecases/login_usecase.dart';
+import '../../domain/usecases/login_with_google_usecase.dart';
+import '../../domain/usecases/register.dart';
+import 'auth_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthState> {

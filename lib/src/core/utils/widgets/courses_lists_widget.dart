@@ -1,10 +1,9 @@
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
-import 'package:e_learning/src/features/allCourses/presentation/pages/course_details_screen.dart';
-import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
-import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
-import 'package:e_learning/src/features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
-import 'package:e_learning/src/features/myCourses/presentation/widgets/my_course_card_widget.dart';
+import '../../../config/routes/navigation.dart';
+import '../../entities/my_courses_entity.dart';
+import 'app_widgets.dart';
+import '../../../features/allCourses/presentation/pages/course_details_screen.dart';
+import '../../../features/myCourses/presentation/pages/course_lectures_screen.dart.dart';
+import '../../../features/myCourses/presentation/widgets/my_course_card_widget.dart';
 import 'package:flutter/material.dart';
 
 Widget buildCoursesListWidget({
@@ -26,23 +25,20 @@ Widget buildCoursesListWidget({
               courseEntity: courses[index],
               onTap: () {
                 if (!isMyCourses) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CourseDetailsScreen(
-                        courseEntity: courses[index],
-                      ),
+                  navigateTo(
+                    context: context,
+                    screen: CourseDetailsScreen(
+                      courseEntity: courses[index],
                     ),
                   );
                 } else {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CourseLecturesScreen(
-                          courseEntity: courses[index],
-                          isLectureChanged: false,
-                        ),
-                      ));
+                  navigateTo(
+                    context: context,
+                    screen: CourseLecturesScreen(
+                      courseEntity: courses[index],
+                      isLectureChanged: false,
+                    ),
+                  );
                 }
               },
               isMyCourse: isMyCourses,

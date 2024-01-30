@@ -1,8 +1,8 @@
-import 'package:e_learning/src/features/myCourses/presentation/cubit/mycourses_cubit.dart';
+import '../cubit/mycourses_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'package:e_learning/src/injector.dart' as di;
+import '../../../../injector.dart' as di;
 
 //
 class MyYouTubeWidget extends StatefulWidget {
@@ -51,7 +51,6 @@ class _MyYouTubeWidgetState extends State<MyYouTubeWidget> {
       create: (context) => di.sl<MycoursesCubit>(),
       child: BlocConsumer<MycoursesCubit, MycoursesState>(
         listener: (context, state) {
-          // TODO: implement listener
         },
         builder: (context, state) {
           return YoutubePlayer(

@@ -1,8 +1,6 @@
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/utils/consts/constatnts.dart';
-import 'package:e_learning/src/core/utils/methods/choose_color.dart';
-import 'package:e_learning/src/core/utils/widgets/app_widgets.dart';
-import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../../../core/utils/widgets/app_widgets.dart';
+import '../../../settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 

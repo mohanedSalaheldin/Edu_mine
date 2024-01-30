@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_learning/src/core/models/couses_model.dart';
-import 'package:e_learning/src/features/home/data/models/home_monitor_model.dart';
-import 'package:e_learning/src/features/home/data/models/home_user_data_model.dart';
+import '../../../../core/models/couses_model.dart';
+import '../models/home_monitor_model.dart';
+import '../models/home_user_data_model.dart';
 
 abstract class HomeRemoteDataSource {
   Future<HomeUserDataModel> getUserData({required String uID});

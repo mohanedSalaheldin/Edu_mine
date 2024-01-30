@@ -1,4 +1,4 @@
-import 'package:e_learning/src/features/home/presentation/pages/home_layout.dart';
+import '../../../features/home/presentation/pages/home_layout.dart';
 import 'package:flutter/material.dart';
 
 class NoConnectionScreen extends StatelessWidget {

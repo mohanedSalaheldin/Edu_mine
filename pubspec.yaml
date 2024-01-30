@@ -24,6 +24,7 @@ dependencies:
   google_sign_in: ^6.1.6
   hexcolor: ^3.0.1
   intl: ^0.18.1
+  shared_preferences: ^2.2.2
   video_player: ^2.8.1
   youtube_player_flutter: ^8.1.2
 

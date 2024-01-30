@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/core/entities/my_courses_entity.dart';
-import 'package:e_learning/src/core/utils/network/network_info.dart';
-import 'package:e_learning/src/features/myCourses/data/datasources/my_course_remote_datasourse.dart';
-import 'package:e_learning/src/features/myCourses/domain/entities/section_entity.dart';
-import 'package:e_learning/src/features/myCourses/domain/repositories/my_courses_repository.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/entities/my_courses_entity.dart';
+import '../../../../core/utils/network/network_info.dart';
+import '../datasources/my_course_remote_datasourse.dart';
+import '../../domain/entities/section_entity.dart';
+import '../../domain/repositories/my_courses_repository.dart';
 
 class MyCoursesRepositoryImpl implements MyCoursesRepository {
   final MyCoursesRemoteDataSource remoteDataSource;

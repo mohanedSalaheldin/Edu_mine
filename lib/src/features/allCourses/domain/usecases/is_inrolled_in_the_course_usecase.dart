@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_learning/src/core/errors/failures.dart';
-import 'package:e_learning/src/features/allCourses/domain/repositories/courses_repository.dart';
+import '../../../../core/errors/failures.dart';
+import '../repositories/courses_repository.dart';
 
 class IsEnrolledInCourseUseCase {
   final CoursesRepository repository;

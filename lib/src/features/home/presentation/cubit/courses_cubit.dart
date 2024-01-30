@@ -1,7 +1,7 @@
-import 'package:e_learning/src/features/allCourses/presentation/pages/all_courses_screen.dart';
-import 'package:e_learning/src/features/home/presentation/pages/home_screen/home_screen.dart';
-import 'package:e_learning/src/features/myCourses/presentation/pages/my_courses_screen.dart';
-import 'package:e_learning/src/features/settings/presentation/pages/settings_screen.dart';
+import '../../../allCourses/presentation/pages/all_courses_screen.dart';
+import '../pages/home_screen/home_screen.dart';
+import '../../../myCourses/presentation/pages/my_courses_screen.dart';
+import '../../../settings/presentation/pages/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
