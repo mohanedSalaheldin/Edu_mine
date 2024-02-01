@@ -22,11 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about_us": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
+        "already_enrolled": MessageLookupByLibrary.simpleMessage("مسجل بالفعل"),
+        "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+        "best_courses_that":
+            MessageLookupByLibrary.simpleMessage("أفضل الدورات التي "),
+        "completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
+        "courses": MessageLookupByLibrary.simpleMessage("الدورات"),
         "create_new_account":
             MessageLookupByLibrary.simpleMessage("حساب جديد؟"),
+        "dark_mode": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
+        "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
+        "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+        "enroll": MessageLookupByLibrary.simpleMessage("التسجيل"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة السر؟"),
+        "help_center": MessageLookupByLibrary.simpleMessage("مركز المساعدة"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "invaild_credential":
             MessageLookupByLibrary.simpleMessage("بيانات دخول خاطئة"),
         "invaild_email": MessageLookupByLibrary.simpleMessage("بريد عير صالح"),
@@ -36,20 +49,32 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الاسم قصير جدا"),
         "invaild_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور < 8 احرف"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "latest_courses": MessageLookupByLibrary.simpleMessage("أحدث الدورات"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "logout": MessageLookupByLibrary.simpleMessage("خروج"),
+        "monitors_of_the_week":
+            MessageLookupByLibrary.simpleMessage("مراقبو الأسبوع"),
+        "my_learning": MessageLookupByLibrary.simpleMessage("تعلمي"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "no_nternet":
             MessageLookupByLibrary.simpleMessage("ليس لديك أتصال بالانترنت"),
+        "ongoing": MessageLookupByLibrary.simpleMessage("جاري"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "password_again":
             MessageLookupByLibrary.simpleMessage("تاكيد كلمة المرور "),
         "register": MessageLookupByLibrary.simpleMessage("إنشاء"),
+        "reviews": MessageLookupByLibrary.simpleMessage("مراجعة"),
+        "section": MessageLookupByLibrary.simpleMessage("محاضرة"),
+        "see_all": MessageLookupByLibrary.simpleMessage("رؤية الكل"),
         "serverError":
             MessageLookupByLibrary.simpleMessage("خطأ بالخادم ،حاول لاحقا "),
+        "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "sign_in_to_continue":
             MessageLookupByLibrary.simpleMessage("قم بستجيل الدخول للمواصلة"),
         "sign_up_to_join":
             MessageLookupByLibrary.simpleMessage("أنشئ حساب للمواصلة"),
+        "suites_to_you": MessageLookupByLibrary.simpleMessage("تناسبك"),
         "welcome": MessageLookupByLibrary.simpleMessage("اهلا بك"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("اهلا بعودتك")
       };

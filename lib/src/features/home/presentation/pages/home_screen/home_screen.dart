@@ -1,3 +1,5 @@
+import 'package:e_learning/generated/l10n.dart';
+
 import '../../../../../core/errors/error_strings.dart';
 import '../../../../../core/utils/widgets/app_widgets.dart';
 import '../../../../../core/utils/widgets/loading_screen.dart';
@@ -49,31 +51,36 @@ class HomeScreen extends StatelessWidget {
           }
           return Scaffold(
             body: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 buildTopContainer(context),
                 vericalGab(),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 20.0),
-                  child: SizedBox(
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                      start: 20.0,
+                      top: 8.0,
+                      bottom: 8.0,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         buildTitleAndMore(
                           context,
-                          'Latest Courses',
+                          S.of(context).latest_courses,
                         ),
                         vericalGab(),
                         buildMyCoursesSection(context),
-                        vericalGab(),
+                        vericalGab(val: 5),
                         buildTitleAndMore(
                           context,
-                          "Monitors of The Week",
+                          S.of(context).monitors_of_the_week,
                         ),
-                        vericalGab(),
+                        vericalGab(val: 5),
                         buildMonitorsSection(context),
-                        vericalGab(),
                       ],
                     ),
                   ),

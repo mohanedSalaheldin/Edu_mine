@@ -18,16 +18,14 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => di.sl<SettingsCubit>()
+            // ..getUserData()
             ..getLangFromCache()
             ..getThemeFromCache(),
         ),
       ],
       child: BlocConsumer<SettingsCubit, SettingsState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
-      
-
           return MaterialApp(
             locale: Locale(SettingsCubit.get(context).appLang),
             theme: SettingsCubit.get(context).appTheme,
@@ -40,7 +38,6 @@ class MyApp extends StatelessWidget {
             supportedLocales: S.delegate.supportedLocales,
             title: 'E-Learning',
             debugShowCheckedModeBanner: false,
-            // home: const LoginScreen(),
             home: _choseStartScreen(),
           );
         },

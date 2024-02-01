@@ -1,9 +1,9 @@
 part of 'courses_cubit.dart';
 
-abstract class CoursesState {
-  const CoursesState();
+abstract class HomeLayoutState {
+  const HomeLayoutState();
 }
 
-class CoursesInitial extends CoursesState {}
+class HomeLayoutInitial extends HomeLayoutState {}
 
-class CoursesNavBarChange extends CoursesState {}
+class HomeLayoutNavBarChange extends HomeLayoutState {}

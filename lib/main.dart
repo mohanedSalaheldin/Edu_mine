@@ -22,6 +22,3 @@ void main() async {
   );
   runApp(const MyApp());
 }
-
-
-// #linguistics, #computer_science, #self_development

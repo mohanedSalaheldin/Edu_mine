@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -246,6 +245,236 @@ class S {
     return Intl.message(
       'Forgot Password?',
       name: 'forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Courses`
+  String get courses {
+    return Intl.message(
+      'Courses',
+      name: 'courses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Learnig`
+  String get my_learning {
+    return Intl.message(
+      'My Learnig',
+      name: 'my_learning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Best Courses that`
+  String get best_courses_that {
+    return Intl.message(
+      'Best Courses that',
+      name: 'best_courses_that',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `suites to you`
+  String get suites_to_you {
+    return Intl.message(
+      'suites to you',
+      name: 'suites_to_you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Latest Courses`
+  String get latest_courses {
+    return Intl.message(
+      'Latest Courses',
+      name: 'latest_courses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monitors of The Week`
+  String get monitors_of_the_week {
+    return Intl.message(
+      'Monitors of The Week',
+      name: 'monitors_of_the_week',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See All`
+  String get see_all {
+    return Intl.message(
+      'See All',
+      name: 'see_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark Mode`
+  String get dark_mode {
+    return Intl.message(
+      'Dark Mode',
+      name: 'dark_mode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help Center`
+  String get help_center {
+    return Intl.message(
+      'Help Center',
+      name: 'help_center',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Us`
+  String get about_us {
+    return Intl.message(
+      'About Us',
+      name: 'about_us',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message(
+      'Arabic',
+      name: 'arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sections`
+  String get section {
+    return Intl.message(
+      'Sections',
+      name: 'section',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enroll`
+  String get enroll {
+    return Intl.message(
+      'Enroll',
+      name: 'enroll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ongoing`
+  String get ongoing {
+    return Intl.message(
+      'Ongoing',
+      name: 'ongoing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get completed {
+    return Intl.message(
+      'Completed',
+      name: 'completed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already Enrolled`
+  String get already_enrolled {
+    return Intl.message(
+      'Already Enrolled',
+      name: 'already_enrolled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reviews`
+  String get reviews {
+    return Intl.message(
+      'Reviews',
+      name: 'reviews',
       desc: '',
       args: [],
     );

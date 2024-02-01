@@ -35,7 +35,7 @@ class CoursesRemoteDataSourceImpl implements CoursesRemoteDataSource {
         .set({
       'courseID': courseID,
       'done_sections': 0,
-      'watchedSection': ["le1", "le2"],
+      'watchedSection': [],
     });
     return Future.value(unit);
   }
@@ -56,7 +56,6 @@ class CoursesRemoteDataSourceImpl implements CoursesRemoteDataSource {
       }
       return element.data()['courseID'] == courseID;
     });
-
     return isFound;
   }
 }

@@ -8,7 +8,6 @@ abstract class SettingsLocalDataSource {
     required String value,
   });
 }
-
 class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
   @override
   Future<Unit> cacheData({required String key, required String value}) async {

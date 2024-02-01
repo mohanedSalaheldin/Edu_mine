@@ -12,7 +12,6 @@ import 'settings_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit({
     required this.getCachedLangUsecase,
@@ -83,9 +82,38 @@ class SettingsCubit extends Cubit<SettingsState> {
     } else {
       appLang = englishLangCode;
     }
-
     emit(SettingsChangeLangState());
     await cacheAppLangUsecase.call(langCode: appLang);
+  }
+
+  void logout() async {
+    emit(SettingsUserLogoutLoadingState());
+    Either<Failure, Unit> response = await logOutUsecase.call();
+    response.fold(
+      (failure) {
+        emit(SettingsUserLogoutErrorState());
+      },
+      (_) {
+        emit(SettingsUserLogoutSuccessState());
+      },
+    );
+  }
+
+  Map<String, dynamic> userData = {};
+  void getUserData() async {
+    emit(SettingsGetUserDataLoadingState());
+    Either<Failure, Map<String, dynamic>> response =
+        await getUserDataUsecase.call();
+
+    response.fold(
+      (failure) {
+        emit(SettingsGetUserDataErrorState());
+      },
+      (userDataMap) async {
+        userData = userDataMap;
+        emit(SettingsGetUserDataSuccessState());
+      },
+    );
   }
 }
 

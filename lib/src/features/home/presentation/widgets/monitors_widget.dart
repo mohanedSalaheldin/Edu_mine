@@ -1,3 +1,5 @@
+import 'package:e_learning/generated/l10n.dart';
+
 import '../../../../core/utils/consts/screen_sizes.dart';
 import '../../domain/entities/monitors_entity.dart';
 import '../../../settings/presentation/cubit/settings_cubit.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 Widget buildMonitorsCard(BuildContext context, MonitorEntity monitorEntity) {
-  double height = ScreenSizes.getHieght(context) / 10;
+  double height = ScreenSizes.getHieght(context) / 14;
   double width = ScreenSizes.getWidth(context) / 1.6;
   return Container(
     padding: const EdgeInsets.symmetric(
@@ -57,7 +59,7 @@ Widget buildMonitorsCard(BuildContext context, MonitorEntity monitorEntity) {
                       ),
                 ),
                 Text(
-                  "(${monitorEntity.reviews} Reviews)",
+                  "(${monitorEntity.reviews} ${S.of(context).reviews})",
                   style: Theme.of(context).textTheme.displaySmall!.copyWith(
                         color: Colors.grey,
                         fontWeight: FontWeight.normal,

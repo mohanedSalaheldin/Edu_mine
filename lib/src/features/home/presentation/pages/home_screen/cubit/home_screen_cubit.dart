@@ -10,7 +10,6 @@ import '../../../../domain/usecases/home_get_user_data_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 part 'home_screen_state.dart';
 
 class HomeScreenCubit extends Cubit<HomeScreenState> {
@@ -34,13 +33,13 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         if (failure is OfflineFailure) {
           emit(const HomeScreenGetUserDataError(msg: ErrorsString.noInternet));
         } else {
-          emit(const HomeScreenGetUserDataError(
-              msg: ErrorsString.serverError));
+          emit(const HomeScreenGetUserDataError(msg: ErrorsString.serverError));
         }
         // emit(HomeScreenGetUserDataError());
       },
       (model) {
         userName = model.name;
+        currentUserEntity = model;
         emit(HomeScreenGetUserDataSuccess());
       },
     );
@@ -78,8 +77,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         if (failure is OfflineFailure) {
           emit(const HomeScreenGetMonitorsError(msg: ErrorsString.noInternet));
         } else {
-          emit(const HomeScreenGetMonitorsError(
-              msg: ErrorsString.serverError));
+          emit(const HomeScreenGetMonitorsError(msg: ErrorsString.serverError));
         }
       },
       (value) {
@@ -89,3 +87,9 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     );
   }
 }
+
+HomeUserEntity currentUserEntity = HomeUserEntity(
+  name: '',
+  uID: '',
+  coursesIDs: [],
+);
