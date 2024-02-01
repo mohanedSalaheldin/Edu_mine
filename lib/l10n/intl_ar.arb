@@ -17,6 +17,30 @@
     "invaild_name_long":"الاسم طويل جدا",
     "invaild_name_short":"الاسم قصير جدا",
     "password_again":"تاكيد كلمة المرور ",
-    "forgot_password":"هل نسيت كلمة السر؟"
+    "forgot_password":"هل نسيت كلمة السر؟",
+    "home": "الرئيسية",
+    "courses": "الدورات",
+    "my_learning": "تعلمي",
+    "settings": "الإعدادات",
+    "best_courses_that": "أفضل الدورات التي ",
+    "suites_to_you": "تناسبك",
+    "latest_courses": "أحدث الدورات",
+    "monitors_of_the_week": "مراقبو الأسبوع",
+    "see_all": "رؤية الكل",
+    "reviews":"مراجعة",
+    "dark_mode": "الوضع الداكن",
+    "language": "اللغة",
+    "help_center": "مركز المساعدة",
+    "about_us": "معلومات عنا",
+    "arabic": "العربية",
+    "logout":"خروج",
+    "english": "الإنجليزية",
+    "section": "محاضرة",
+    "description": "الوصف",
+    "enroll": "التسجيل",
+    "already_enrolled": "مسجل بالفعل",
+    "ongoing": "جاري",
+    "completed": "مكتمل"
+
     
 }

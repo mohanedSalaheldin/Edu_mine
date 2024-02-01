@@ -75,7 +75,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   void _saveUserDataInFireStore(UserCredential userCredential,
       {String? name}) async {
-    debugPrint('DocumentSnapshot added with ID');
     await _store
         .collection('users')
         .doc(

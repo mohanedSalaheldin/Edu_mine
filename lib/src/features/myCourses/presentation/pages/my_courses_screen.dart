@@ -1,3 +1,5 @@
+import 'package:e_learning/generated/l10n.dart';
+
 import '../../../../core/errors/error_strings.dart';
 import '../../../../core/utils/consts/screen_sizes.dart';
 import '../../../../core/utils/widgets/app_widgets.dart';
@@ -38,9 +40,8 @@ class MyLearnScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            'Ongoing',
-                            
+                          Text(
+                            S.of(context).ongoing,
                           ),
                           horizentalGab(
                             val: 5,
@@ -52,8 +53,8 @@ class MyLearnScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            'Completed',
+                          Text(
+                            S.of(context).completed,
                           ),
                           horizentalGab(
                             val: 5,
@@ -63,13 +64,12 @@ class MyLearnScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                title: const Text('My Courses'),
+                title: Text(S.of(context).my_learning),
               ),
               body: TabBarView(
                 children: [
                   _mapStateToOngoingWidget(state, context, height),
                   _mapStateToCompletedWidget(state, context, height),
-              
                 ],
               ),
             ),

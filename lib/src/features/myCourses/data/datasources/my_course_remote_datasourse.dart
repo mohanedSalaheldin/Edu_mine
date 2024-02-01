@@ -78,7 +78,6 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
         .orderBy('number')
         .get();
 
-// isWatched
     sections =
         snapshot.docs.map((QueryDocumentSnapshot<Map<String, dynamic>> doc) {
       Map<String, dynamic> data = doc.data();
@@ -88,13 +87,8 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
       } else {
         data['isWatched'] = false;
       }
-      // data['isWatched'] =
       return SectionModel.fromJson(data);
     }).toList();
-
-    // for (var element in sections) {
-    //   if (watchedLectures.contains(element.url)) {}
-    // }
     return sections;
   }
 
@@ -103,7 +97,6 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
     required String courseID,
     required String sectionURL,
   }) async {
-    // print(uID);
     DocumentSnapshot<Map<String, dynamic>> snip = await store
         .collection('users')
         .doc(uID)
@@ -124,9 +117,6 @@ class MyCoursesRemoteDataSourceImpl implements MyCoursesRemoteDataSource {
         .doc(courseID)
         .set(data)
         .then((value) {
-      // print('*********************************************');
-      // print(sectionURL);
-      // print('*********************************************');
     });
 
     return Future.value(unit);

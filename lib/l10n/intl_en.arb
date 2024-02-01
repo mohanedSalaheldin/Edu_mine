@@ -18,5 +18,33 @@
     "serverError":"Server Error, Please try later",
     "password":"Password",
     "password_again":"Password again",
-    "forgot_password":"Forgot Password?"
+    "forgot_password":"Forgot Password?",
+    "home":"Home",
+    "courses":"Courses",
+    "my_learning":"My Learnig",
+    "settings":"Settings",
+    "best_courses_that":"Best Courses that",
+    "suites_to_you":"suites to you",
+    "latest_courses":"Latest Courses",
+    "monitors_of_the_week":"Monitors of The Week",
+    "see_all":"See All",
+    "dark_mode":"Dark Mode",
+    "language":"Language",
+    "help_center":"Help Center",
+    "about_us":"About Us",
+    "arabic":"Arabic",
+    "english":"English",
+    "logout":"Logout",
+    "section":"Sections",
+    "description":"Description",
+    "enroll":"Enroll",
+    "ongoing":"Ongoing",
+    "completed":"Completed",
+    "already_enrolled":"Already Enrolled",
+    "reviews":"Reviews"
+    
+    
+
+
+    
 }

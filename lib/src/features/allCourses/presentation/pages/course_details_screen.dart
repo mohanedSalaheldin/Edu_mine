@@ -1,3 +1,5 @@
+import 'package:e_learning/generated/l10n.dart';
+
 import '../../../../core/entities/my_courses_entity.dart';
 import '../../../../core/errors/error_strings.dart';
 import '../../../../core/utils/consts/screen_sizes.dart';
@@ -52,8 +54,8 @@ class CourseDetailsScreen extends StatelessWidget {
                 context: context,
                 content: Text(
                   AllcoursesCubit.get(context).enrollmentCheckResult
-                      ? 'Already Enrolled'
-                      : 'Enroll',
+                      ? S.of(context).already_enrolled
+                      : S.of(context).enroll,
                 ),
                 onpressed: AllcoursesCubit.get(context).enrollmentCheckResult
                     ? () {}
@@ -141,7 +143,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                       children: [
                                         IconWithStatisticWidget(
                                           statistics:
-                                              "${courseEntity.rate} (${courseEntity.reviews}k Reviews)",
+                                              "${courseEntity.rate} (${courseEntity.reviews}k ${S.of(context).reviews})",
                                           iconData: Icons.star_outlined,
                                         ),
                                       ],
@@ -154,7 +156,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                         ),
                                         horizentalGab(),
                                         Text(
-                                          '${courseEntity.allSections} Sections',
+                                          '${courseEntity.allSections} ${S.of(context).section}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodySmall!
@@ -167,7 +169,7 @@ class CourseDetailsScreen extends StatelessWidget {
                                     ),
                                     vericalGab(val: 30.0),
                                     Text(
-                                      'Description',
+                                      S.of(context).description,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall!

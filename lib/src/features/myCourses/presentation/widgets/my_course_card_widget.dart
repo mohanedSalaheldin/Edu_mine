@@ -1,3 +1,5 @@
+import 'package:e_learning/generated/l10n.dart';
+
 import '../../../../core/entities/my_courses_entity.dart';
 import '../../../../core/utils/widgets/app_widgets.dart';
 import '../../../settings/presentation/cubit/settings_cubit.dart';
@@ -30,12 +32,8 @@ Widget buildMyCouseCard({
           Container(
             padding: const EdgeInsetsDirectional.all(10.0),
             height: height / 4,
-            // color: HexColor('#0c1c2c'),
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                  // bottomLeft: Radius.circular(15.0),
-                  // bottomRight: Radius.circular(15.0),
-                  ),
+             
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -66,7 +64,7 @@ Widget buildMyCouseCard({
             ),
           ),
           Container(
-            color:  isAppThemeIsDark ? HexColor('#252727') : HexColor('#ffffff'),
+            color: isAppThemeIsDark ? HexColor('#252727') : HexColor('#ffffff'),
             height: (height - (height / 4)),
             padding: const EdgeInsetsDirectional.all(10.0),
             child: Column(
@@ -141,7 +139,7 @@ Widget buildMyCouseCard({
                               ),
                         ),
                         Text(
-                          "(${courseEntity.reviews} Reviews)",
+                          "(${courseEntity.reviews} ${S.of(context).reviews})",
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall!
@@ -161,7 +159,7 @@ Widget buildMyCouseCard({
                     Text(
                       isMyCourse
                           ? "${courseEntity.doneSections}/${courseEntity.allSections}"
-                          : '${courseEntity.allSections} Sections',
+                          : '${courseEntity.allSections} ${S.of(context).section}',
                       maxLines: 1,
                       overflow: TextOverflow.clip,
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(

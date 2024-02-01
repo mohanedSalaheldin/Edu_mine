@@ -1,3 +1,5 @@
+import 'package:e_learning/generated/l10n.dart';
+
 import '../../../../core/errors/error_strings.dart';
 import '../../../../core/utils/consts/screen_sizes.dart';
 import '../../../../core/utils/widgets/courses_lists_widget.dart';
@@ -18,7 +20,9 @@ class AllCoursesScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => di.sl<AllcoursesCubit>()..getAllCourses(),
       child: BlocConsumer<AllcoursesCubit, AllcoursesState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          
+        },
         builder: (context, state) {
           if (state is GetAllcoursesLoading) {
             return const LoadingScreen();
@@ -30,7 +34,7 @@ class AllCoursesScreen extends StatelessWidget {
           }
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Courses'),
+              title: Text(S.of(context).courses),
             ),
             body: Container(
               child: buildCoursesListWidget(

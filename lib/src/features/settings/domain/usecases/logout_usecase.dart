@@ -6,7 +6,7 @@ class LogOutUsecase {
   final SettingsRepository repository;
 
   LogOutUsecase({required this.repository});
-  Future<Either<Failure, Unit>> call({required String themeName}) {
+  Future<Either<Failure, Unit>> call() {
     return repository.logout();
   }
 }

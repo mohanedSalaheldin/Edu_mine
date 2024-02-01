@@ -1,3 +1,5 @@
+import 'package:e_learning/src/features/settings/presentation/cubit/settings_cubit.dart';
+
 import '../../domain/entities/section_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -54,7 +56,8 @@ Widget buildLectureItem({
               sectionEntity.isWatched
                   ? Icons.check_circle_outline
                   : Icons.circle_outlined,
-              color: HexColor('#0c1c2c'),
+              color:
+                  isAppThemeIsDark ? HexColor('#ffffff') : HexColor('#252727'),
               size: 35.0,
             ),
           )

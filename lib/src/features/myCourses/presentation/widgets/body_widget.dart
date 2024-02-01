@@ -71,7 +71,6 @@ Widget buildBody({
                                   .textTheme
                                   .bodyLarge!
                                   .copyWith(
-                                    // fontWeight: FontWeight.w500,
                                     fontSize: 26,
                                   ),
                             ),
