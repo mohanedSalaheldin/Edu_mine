@@ -13,7 +13,7 @@ This is a simple e-learning application built using the Flutter framework and Fi
 
 ## Demo
 
-A live demo of the application can be accessed (https://www.mediafire.com/file/nw60r7chb8fvx1d/app-release.apk/file).
+A live demo of the application can be accessed (https://www.mediafire.com/file/jol5co9zhwjy7tj/E-learn.apk/file).
 
 ## Getting Started
 
