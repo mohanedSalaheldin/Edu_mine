@@ -1,6 +1,6 @@
-# Simple E-Learning Application
+# Full Functional E-Learning Application
 
-This is a simple e-learning application built using the Flutter framework and Firebase package. It provides various features to enhance the learning experience, including authentication, remote and local databases, themes, localization, and YouTube integration.
+This is an e-learning application built using the Flutter framework and Firebase package. It provides various features to enhance the learning experience, including authentication, remote and local databases, themes, localization, and YouTube integration.
 
 ## Features
 
