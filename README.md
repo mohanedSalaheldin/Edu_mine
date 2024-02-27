@@ -1,6 +1,6 @@
 ##  What?
 
-**Edu_mine™️ is a complete e-learning application**, built using Flutter and Firebase, that enables you to sign up for courses, view their content, and track your progress in each course.
+**Edu_mine is a complete e-learning application**, built using Flutter and Firebase, that enables you to sign up for courses, view their content, and track your progress in each course.
 
 ##  Why?
 I developed this project primarily to sharpen my skills in **building complex UIs**, refining my abilities to **design and manage Backend**-as-a-Service (BaaS) solutions like **Firebase**, and **handle the complex logic** needed to seamlessly integrate both.
