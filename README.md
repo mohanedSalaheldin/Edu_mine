@@ -8,6 +8,7 @@ I developed this project primarily to sharpen my skills in **building complex UI
 
 ###  🕸️Features
 
+- **Architecture:** Clean architecture.
 - **Authentication:** Firebase Auth(Email & Google singin).
 - **Remote Database:** Firebase DB.
 - **Local Storage:** Caching using SharedPrefrances.
