@@ -6,6 +6,9 @@
 I developed this project primarily to sharpen my skills in **building complex UIs**, refining my abilities to **design and manage Backend**-as-a-Service (BaaS) solutions like **Firebase**, and **handle the complex logic** needed to seamlessly integrate both.
 
 
+
+
+
 ###  🕸️Features
 
 - **Architecture:** Clean architecture.
@@ -15,6 +18,11 @@ I developed this project primarily to sharpen my skills in **building complex UI
 - **Themes:** Dark & Light.
 - **Localization:** Arabic & English
 - **YouTube Integration:** Integrates YouTube videos using youtube_player_flutter package.
+
+### 📱ScreenShots
+
+![1](https://github.com/mohanedSalaheldin/Edu_mine/assets/96516930/9b024d5c-bfa4-4a02-bec1-5f2080718f05)
+![2](https://github.com/mohanedSalaheldin/Edu_mine/assets/96516930/27dc2143-6b63-4a02-9043-b68955c41207)
 
 ### 📱Demo
 
