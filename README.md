@@ -21,8 +21,7 @@ I developed this project primarily to sharpen my skills in **building complex UI
 
 ### 📱ScreenShots
 
-![2](https://github.com/mohanedSalaheldin/Edu_mine/assets/96516930/27dc2143-6b63-4a02-9043-b68955c41207)
-![5](https://github.com/mohanedSalaheldin/Edu_mine/assets/96516930/883429a0-76e0-4f0c-a441-dba9c0a27769)
+![learning](https://github.com/user-attachments/assets/45a67d9b-fb92-40f7-9b88-e100d85e30ad)
 
 
 ### 📱Demo
