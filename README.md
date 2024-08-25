@@ -20,9 +20,7 @@ I developed this project primarily to sharpen my skills in **building complex UI
 - **YouTube Integration:** Integrates YouTube videos using youtube_player_flutter package.
 
 ### 📱ScreenShots
-
-![learning](https://github.com/user-attachments/assets/45a67d9b-fb92-40f7-9b88-e100d85e30ad)
-
+![01_learning](https://github.com/user-attachments/assets/02ee414f-7e2b-49cf-9a1e-da5e0b074b5c)
 
 ### 📱Demo
 
