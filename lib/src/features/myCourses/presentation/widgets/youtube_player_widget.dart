@@ -74,7 +74,7 @@ class _MyYouTubeWidgetState extends State<MyYouTubeWidget> {
               ),
               RemainingDuration(),
               FullScreenButton(),
-              // PlayPauseButton(),
+            
             ],
           );
         },
@@ -83,10 +83,4 @@ class _MyYouTubeWidgetState extends State<MyYouTubeWidget> {
   }
 }
 
-// YoutubePlayer buildYouTube({
-//   // required String youTubeLink,
-//   required BuildContext context,
 
-//   // required String courseID,
-//   // required String sectionID,
-// }) {}

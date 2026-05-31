@@ -1,74 +1,88 @@
-import 'package:e_learning/generated/l10n.dart';
-
-import '../../../../core/utils/consts/screen_sizes.dart';
+import '../../../../core/utils/app_color.dart';
 import '../../domain/entities/monitors_entity.dart';
-import '../../../settings/presentation/cubit/settings_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget buildMonitorsCard(BuildContext context, MonitorEntity monitorEntity) {
-  double height = ScreenSizes.getHieght(context) / 14;
-  double width = ScreenSizes.getWidth(context) / 1.6;
+  Color textColor = Theme.of(context).textTheme.bodyMedium?.color ?? Colors.black;
+
   return Container(
-    padding: const EdgeInsets.symmetric(
-      horizontal: 10.0,
-    ),
-    height: height,
-    width: width,
-    clipBehavior: Clip.antiAlias,
+    padding: EdgeInsets.all(12.r),
+    margin: EdgeInsets.only(right: 12.w),
+    width: 260.w,
     decoration: BoxDecoration(
-      color: isAppThemeIsDark ? HexColor('#252727') : HexColor('#ffffff'),
-      borderRadius: const BorderRadius.all(
-        Radius.circular(
-          15.0,
+      color: Theme.of(context).cardTheme.color,
+      borderRadius: BorderRadius.circular(20.r),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.03),
+          blurRadius: 8.r,
+          offset: Offset(0, 2.h),
         ),
+      ],
+      border: Border.all(
+        color: Theme.of(context).dividerColor.withOpacity(0.05),
       ),
     ),
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const CircleAvatar(
-          radius: 25,
-          child: Icon(Icons.wallet),
+        Container(
+          padding: EdgeInsets.all(2.r),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: AppColor.primary, width: 2.w),
+          ),
+          child: CircleAvatar(
+            radius: 22.r,
+            backgroundColor: AppColor.primary.withOpacity(0.1),
+            child: Icon(Icons.person_rounded, color: AppColor.primaryDark, size: 24.sp),
+          ),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              monitorEntity.name,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 20.0,
+        SizedBox(width: 12.w),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                monitorEntity.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.sp,
+                  color: textColor,
+                ),
+              ),
+              SizedBox(height: 4.h),
+              Row(
+                children: [
+                  Icon(
+                    Icons.star_rounded,
+                    color: Colors.amber,
+                    size: 16.sp,
                   ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.star_outlined,
-                  color: HexColor('#f0ac79'),
-                ),
-                Text(
-                  monitorEntity.rate,
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16.0,
-                      ),
-                ),
-                Text(
-                  "(${monitorEntity.reviews} ${S.of(context).reviews})",
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16.0,
-                      ),
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(width: 4.w),
+                  Text(
+                    monitorEntity.rate,
+                    style: TextStyle(
+                      color: textColor.withOpacity(0.8),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13.sp,
+                    ),
+                  ),
+                  SizedBox(width: 4.w),
+                  Text(
+                    "(${monitorEntity.reviews})",
+                    style: TextStyle(
+                      color: AppColor.textGrey,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     ),

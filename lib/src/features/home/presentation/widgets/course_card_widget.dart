@@ -1,3 +1,4 @@
+import 'package:e_learning/src/core/utils/app_color.dart';
 import '../../../../config/routes/navigation.dart';
 import '../../../../core/utils/consts/constatnts.dart';
 import '../../../../core/utils/widgets/app_widgets.dart';
@@ -5,8 +6,8 @@ import '../../../../core/entities/my_courses_entity.dart';
 import '../../../allCourses/presentation/pages/course_details_screen.dart';
 import '../../../myCourses/presentation/pages/course_lectures_screen.dart.dart';
 import '../../../settings/presentation/cubit/settings_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 Widget myCourseCard(
   double height,
@@ -14,196 +15,181 @@ Widget myCourseCard(
   BuildContext context,
   CourseEntity courseEntity,
 ) {
-  int progress =
-      ((courseEntity.doneSections / courseEntity.allSections) * 100).toInt();
+  int progress = ((courseEntity.doneSections / courseEntity.allSections) * 100).round();
+  bool isEnrolled = courseEntity.doneSections != userCoursesIsEmptyCode;
 
-  return InkWell(
+  return GestureDetector(
     onTap: () {
-      courseEntity.doneSections == userCoursesIsEmptyCode
-          ? navigateTo(
-              context: context,
-              screen: CourseDetailsScreen(
-                courseEntity: courseEntity,
-              ),
-            )
-          //  Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => CourseDetailsScreen(
-          //         courseEntity: courseEntity,
-          //       ),
-          //     ),
-          //   )
-          : navigateTo(
-              context: context,
-              screen: CourseLecturesScreen(
-                courseEntity: courseEntity,
-                isLectureChanged: false,
-              ),
-            );
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => CourseLecturesScreen(
-      //         courseEntity: courseEntity,
-      //         isLectureChanged: false,
-      //       ),
-      //     ));
+      navigateTo(
+        context: context,
+        screen: !isEnrolled
+            ? CourseDetailsScreen(courseEntity: courseEntity)
+            : CourseLecturesScreen(courseEntity: courseEntity, isLectureChanged: false),
+      );
     },
     child: Container(
-      height: height,
       width: width,
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            15.0,
+      margin: EdgeInsets.only(right: 16.w, bottom: 8.h),
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardTheme.color,
+        borderRadius: BorderRadius.circular(24.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10.r,
+            offset: Offset(0, 4.h),
           ),
+        ],
+        border: Border.all(
+          color: Theme.of(context).dividerColor.withOpacity(0.05),
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: [
+          // Image / Header Section
           Container(
-            padding: const EdgeInsetsDirectional.all(10.0),
-            height: height / 4,
+            height: 120.h,
+            width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  HexColor('#23629f'),
-                  HexColor('#21659e'),
-                  HexColor('#0d9699'),
+                  AppColor.secondary1,
+                  AppColor.secondary2,
+                  AppColor.secondary3,
                 ],
               ),
             ),
-            child: Row(
+            child: Stack(
               children: [
-                const Icon(
-                  Icons.wifi_tethering_outlined,
-                  color: Colors.white,
-                  size: 35.0,
+                Center(
+                  child: Icon(
+                    Icons.movie_filter_rounded,
+                    color: Colors.white.withOpacity(0.3),
+                    size: 60.sp,
+                  ),
                 ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.more_horiz,
-                    color: Colors.white,
-                    size: 30.0,
+                Positioned(
+                  top: 12.h,
+                  right: 12.w,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
+                      courseEntity.tag,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: isAppThemeIsDark ? HexColor('#252727') : HexColor('#ffffff'),
-            height: (height - (height / 4)),
-            padding: const EdgeInsetsDirectional.all(10.0),
+          // Info Section
+          Padding(
+            padding: EdgeInsets.all(16.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                horizentalGab(val: width),
-                Text(
-                  courseEntity.tag,
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 18.0,
-                      ),
-                ),
-                vericalGab(val: 5),
                 Text(
                   courseEntity.courseName,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 22.0,
-                      ),
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp,
+                    height: 1.2,
+                  ),
                 ),
-                vericalGab(),
+                SizedBox(height: 12.h),
                 Row(
                   children: [
-                    const CircleAvatar(
-                      radius: 15,
-                      child: Icon(
-                        Icons.wallet,
-                        size: 20.0,
-                      ),
+                    CircleAvatar(
+                      radius: 12.r,
+                      backgroundColor: AppColor.primary.withOpacity(0.2),
+                      child: Icon(Icons.person, size: 14.sp, color: AppColor.primaryDark),
                     ),
-                    horizentalGab(),
-                    Text(
-                      courseEntity.instructor,
-                      maxLines: 1,
-                      overflow: TextOverflow.clip,
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16.0,
-                          ),
+                    SizedBox(width: 8.w),
+                    Expanded(
+                      child: Text(
+                        courseEntity.instructor,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: AppColor.textGrey,
+                          fontSize: 14.sp,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                vericalGab(),
+                Divider(height: 24.h),
                 Row(
                   children: [
+                    Icon(
+                      Icons.collections_bookmark_rounded,
+                      size: 16.sp,
+                      color: AppColor.textGrey,
+                    ),
+                    SizedBox(width: 4.w),
                     Text(
-                      courseEntity.doneSections == userCoursesIsEmptyCode
+                      !isEnrolled
                           ? '${courseEntity.allSections} Sections'
-                          : "${courseEntity.doneSections}/${courseEntity.allSections}",
-                      maxLines: 1,
-                      overflow: TextOverflow.clip,
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: const Color.fromARGB(255, 158, 158, 158),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18.0,
-                          ),
+                          : '${courseEntity.doneSections}/${courseEntity.allSections} Lessons',
+                      style: TextStyle(
+                        color: AppColor.textGrey,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     const Spacer(),
-                    courseEntity.doneSections == userCoursesIsEmptyCode
-                        ? const SizedBox()
-                        : Row(
-                            children: [
-                              SizedBox(
-                                width: 20.0,
-                                height: 20.0,
-                                child: CircularProgressIndicator.adaptive(
-                                  // value: progress / 100,
-                                  value: (courseEntity.doneSections /
-                                          courseEntity.allSections)
-                                      .toDouble(),
-                                  backgroundColor: HexColor('#bedddd'),
-                                  valueColor: AlwaysStoppedAnimation(
-                                      HexColor('#2ba3a5')),
-                                ),
-                              ),
-                              horizentalGab(val: 5),
-                              Text(
-                                "$progress%",
-                                maxLines: 1,
-                                overflow: TextOverflow.clip,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall!
-                                    .copyWith(
-                                      color: HexColor('#2ba3a5'),
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18.0,
-                                    ),
-                              ),
-                            ],
+                    if (isEnrolled)
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                        decoration: BoxDecoration(
+                          color: AppColor.progressValue.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Text(
+                          "$progress%",
+                          style: TextStyle(
+                            color: AppColor.progressValue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.sp,
                           ),
+                        ),
+                      ),
                   ],
                 ),
+                if (isEnrolled) ...[
+                  SizedBox(height: 12.h),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4.r),
+                    child: LinearProgressIndicator(
+                      value: courseEntity.doneSections / courseEntity.allSections,
+                      backgroundColor: AppColor.progressBackground.withOpacity(0.3),
+                      valueColor: AlwaysStoppedAnimation<Color>(AppColor.progressValue),
+                      minHeight: 6.h,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
+
         ],
       ),
     ),
   );
 }
+

@@ -85,7 +85,7 @@ class SettingsScreen extends StatelessWidget {
                           onChanged: (value) {
                             SettingsCubit.get(context).changeAppTheme();
                           },
-                          activeColor: Colors.greenAccent,
+                          activeThumbColor: Colors.greenAccent,
                           inactiveThumbColor: Colors.black,
                           splashRadius: 60.0,
                         ),
