@@ -1,0 +1,40 @@
+Analyzing e_learning...                                         
+
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\config\themes\dark_theme.dart:135:41 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\config\themes\dark_theme.dart:166:52 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\config\themes\light_theme.dart:76:60 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\config\themes\light_theme.dart:167:54 - deprecated_member_use
+   info - Don't invoke 'print' in production code - lib\src\data.dart:73:9 - avoid_print
+   info - Don't invoke 'print' in production code - lib\src\data.dart:97:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\src\data_entry.dart:73:9 - avoid_print
+   info - Don't invoke 'print' in production code - lib\src\data_entry.dart:98:7 - avoid_print
+warning - Unused import: '../../../../../core/utils/widgets/app_widgets.dart' - lib\src\features\home\presentation\pages\home_screen\home_screen.dart:3:8 - unused_import
+warning - Unused import: '../../../../core/utils/widgets/app_widgets.dart' - lib\src\features\home\presentation\widgets\course_card_widget.dart:4:8 - unused_import
+warning - Unused import: '../../../settings/presentation/cubit/settings_cubit.dart' - lib\src\features\home\presentation\widgets\course_card_widget.dart:8:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\course_card_widget.dart:37:33 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\course_card_widget.dart:43:49 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\course_card_widget.dart:71:43 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\course_card_widget.dart:81:45 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\course_card_widget.dart:121:59 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\course_card_widget.dart:162:59 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\course_card_widget.dart:182:70 - deprecated_member_use
+warning - Unused import: 'package:e_learning/generated/l10n.dart' - lib\src\features\home\presentation\widgets\monitors_widget.dart:1:8 - unused_import
+warning - Unused import: '../../../settings/presentation/cubit/settings_cubit.dart' - lib\src\features\home\presentation\widgets\monitors_widget.dart:5:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\monitors_widget.dart:18:31 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\monitors_widget.dart:24:47 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\monitors_widget.dart:37:47 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\monitors_widget.dart:68:49 - deprecated_member_use
+warning - Unused import: '../../../../core/utils/widgets/app_widgets.dart' - lib\src\features\home\presentation\widgets\title_and_more_widget.dart:3:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\top_container_widget.dart:36:37 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\top_container_widget.dart:53:43 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\top_container_widget.dart:74:39 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\home\presentation\widgets\top_container_widget.dart:122:47 - deprecated_member_use
+warning - Unused import: '../../../../core/utils/widgets/app_widgets.dart' - lib\src\features\myCourses\presentation\widgets\my_course_card_widget.dart:3:8 - unused_import
+warning - Unused import: '../../../settings/presentation/cubit/settings_cubit.dart' - lib\src\features\myCourses\presentation\widgets\my_course_card_widget.dart:5:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\myCourses\presentation\widgets\my_course_card_widget.dart:27:33 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\myCourses\presentation\widgets\my_course_card_widget.dart:33:49 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\myCourses\presentation\widgets\my_course_card_widget.dart:72:53 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\myCourses\presentation\widgets\my_course_card_widget.dart:117:55 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\src\features\myCourses\presentation\widgets\my_course_card_widget.dart:140:72 - deprecated_member_use
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeThumbColor instead. This feature was deprecated after v3.31.0-2.0.pre - lib\src\features\settings\presentation\pages\settings_screen.dart:88:27 - deprecated_member_use
+

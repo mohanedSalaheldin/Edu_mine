@@ -1,10 +1,8 @@
 import 'package:e_learning/generated/l10n.dart';
-
 import '../../../../core/entities/my_courses_entity.dart';
-import '../../../../core/utils/widgets/app_widgets.dart';
-import '../../../settings/presentation/cubit/settings_cubit.dart';
+import '../../../../core/utils/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget buildMyCouseCard({
   required double height,
@@ -13,200 +11,151 @@ Widget buildMyCouseCard({
   required CourseEntity courseEntity,
   bool isMyCourse = true,
 }) {
-  return InkWell(
+  int progress = courseEntity.allSections > 0 
+      ? ((courseEntity.doneSections / courseEntity.allSections) * 100).round()
+      : 0;
+  
+  Color textColor = Theme.of(context).textTheme.bodyMedium?.color ?? Colors.black;
+
+  return GestureDetector(
     onTap: onTap,
     child: Container(
-      height: height,
       width: double.infinity,
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            15.0,
-          ),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsetsDirectional.all(10.0),
-            height: height / 4,
-            decoration: BoxDecoration(
-             
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  HexColor('#23629f'),
-                  HexColor('#21659e'),
-                  HexColor('#0d9699'),
-                ],
-              ),
-            ),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.wifi_tethering_outlined,
-                  color: Colors.white,
-                  size: 35.0,
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.more_horiz,
-                    color: Colors.white,
-                    size: 30.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            color: isAppThemeIsDark ? HexColor('#252727') : HexColor('#ffffff'),
-            height: (height - (height / 4)),
-            padding: const EdgeInsetsDirectional.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                horizentalGab(val: double.infinity),
-                Text(
-                  courseEntity.tag,
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 18.0,
-                      ),
-                ),
-                vericalGab(val: 5),
-                Text(
-                  courseEntity.courseName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 22.0,
-                      ),
-                ),
-                vericalGab(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 15,
-                          child: Icon(
-                            Icons.wallet,
-                            size: 20.0,
-                          ),
-                        ),
-                        horizentalGab(),
-                        Text(
-                          courseEntity.instructor,
-                          maxLines: 1,
-                          overflow: TextOverflow.clip,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16.0,
-                              ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.star_outlined,
-                          color: HexColor('#f0ac79'),
-                        ),
-                        Text(
-                          courseEntity.rate,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16.0,
-                              ),
-                        ),
-                        Text(
-                          "(${courseEntity.reviews} ${S.of(context).reviews})",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16.0,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                vericalGab(),
-                Row(
-                  children: [
-                    Text(
-                      isMyCourse
-                          ? "${courseEntity.doneSections}/${courseEntity.allSections}"
-                          : '${courseEntity.allSections} ${S.of(context).section}',
-                      maxLines: 1,
-                      overflow: TextOverflow.clip,
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18.0,
-                          ),
-                    ),
-                    const Spacer(),
-                    isMyCourse
-                        ? Row(
-                            children: [
-                              SizedBox(
-                                width: 20.0,
-                                height: 20.0,
-                                child: CircularProgressIndicator.adaptive(
-                                  value: (courseEntity.doneSections /
-                                          courseEntity.allSections)
-                                      .toDouble(),
-                                  backgroundColor: HexColor('#bedddd'),
-                                  valueColor: AlwaysStoppedAnimation(
-                                      HexColor('#2ba3a5')),
-                                ),
-                              ),
-                              horizentalGab(val: 5),
-                              Text(
-                                '${((courseEntity.doneSections / courseEntity.allSections) * 100).toInt()}%',
-                                maxLines: 1,
-                                overflow: TextOverflow.clip,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall!
-                                    .copyWith(
-                                      color: HexColor('#2ba3a5'),
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 18.0,
-                                    ),
-                              ),
-                            ],
-                          )
-                        : const SizedBox(),
-                  ],
-                ),
-              ],
-            ),
+      margin: EdgeInsets.only(bottom: 16.h),
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardTheme.color,
+        borderRadius: BorderRadius.circular(24.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 12.r,
+            offset: Offset(0, 4.h),
           ),
         ],
+        border: Border.all(
+          color: Theme.of(context).dividerColor.withOpacity(0.05),
+        ),
+      ),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Left Image Side
+            Container(
+              width: 110.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.horizontal(left: Radius.circular(24.r)),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColor.secondary1,
+                    AppColor.secondary2,
+                  ],
+                ),
+              ),
+              child: Icon(
+                Icons.play_circle_fill_rounded,
+                color: Colors.white,
+                size: 40.sp,
+              ),
+            ),
+            // Right Content Side
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                          decoration: BoxDecoration(
+                            color: AppColor.primary.withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                          child: Text(
+                            courseEntity.tag,
+                            style: TextStyle(
+                              color: AppColor.primaryDark,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Icon(Icons.star_rounded, color: Colors.amber, size: 14.sp),
+                        SizedBox(width: 4.w),
+                        Text(
+                          courseEntity.rate,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, 
+                            fontSize: 12.sp,
+                            color: textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      courseEntity.courseName,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                        color: textColor,
+                      ),
+                    ),
+                    SizedBox(height: 4.h),
+                    Text(
+                      courseEntity.instructor,
+                      style: TextStyle(color: AppColor.textGrey, fontSize: 13.sp),
+                    ),
+                    const Spacer(),
+                    SizedBox(height: 12.h),
+                    Row(
+                      children: [
+                        Text(
+                          isMyCourse
+                              ? "${courseEntity.doneSections}/${courseEntity.allSections} Lessons"
+                              : '${courseEntity.allSections} ${S.of(context).section}',
+                          style: TextStyle(
+                            color: textColor.withOpacity(0.7),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                        const Spacer(),
+                        if (isMyCourse)
+                          Text(
+                            "$progress%",
+                            style: TextStyle(
+                              color: AppColor.progressValue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 6.h),
+                    if (isMyCourse)
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(4.r),
+                        child: LinearProgressIndicator(
+                          value: courseEntity.allSections > 0 ? courseEntity.doneSections / courseEntity.allSections : 0,
+                          backgroundColor: AppColor.progressBackground.withOpacity(0.2),
+                          valueColor: AlwaysStoppedAnimation<Color>(AppColor.progressValue),
+                          minHeight: 4.h,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

@@ -12,11 +12,11 @@ void main() async {
   Bloc.observer = const SimpleBlocObserver();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.black,
-      statusBarBrightness: Brightness.light,
+      statusBarColor: Colors.transparent,
     ),
   );
   await di.init();
+  
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

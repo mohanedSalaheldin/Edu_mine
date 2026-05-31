@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'generated/l10n.dart';
@@ -26,19 +27,26 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<SettingsCubit, SettingsState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return MaterialApp(
-            locale: Locale(SettingsCubit.get(context).appLang),
-            theme: SettingsCubit.get(context).appTheme,
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            title: 'E-Learning',
-            debugShowCheckedModeBanner: false,
-            home: _choseStartScreen(),
+          return ScreenUtilInit(
+            designSize: const Size(360, 690),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
+              return MaterialApp(
+                locale: Locale(SettingsCubit.get(context).appLang),
+                theme: SettingsCubit.get(context).appTheme,
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                title: 'E-Learning',
+                debugShowCheckedModeBanner: false,
+                home: _choseStartScreen(),
+              );
+            },
           );
         },
       ),

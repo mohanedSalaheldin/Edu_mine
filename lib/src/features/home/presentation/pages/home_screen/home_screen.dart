@@ -1,5 +1,4 @@
 import 'package:e_learning/generated/l10n.dart';
-
 import '../../../../../core/errors/error_strings.dart';
 import '../../../../../core/utils/widgets/app_widgets.dart';
 import '../../../../../core/utils/widgets/loading_screen.dart';
@@ -34,58 +33,51 @@ class HomeScreen extends StatelessWidget {
               state is HomeScreenGetUserCoursesLoading) {
             return const LoadingScreen();
           }
-          if (state is HomeScreenGetUserCoursesError) {
-            return state.msg == ErrorsString.noInternet
+          if (state is HomeScreenGetUserCoursesError ||
+              state is HomeScreenGetUserDataError ||
+              state is HomeScreenGetMonitorsError) {
+            final msg = (state as dynamic).msg;
+            return msg == ErrorsString.noInternet
                 ? const NoConnectionScreen()
                 : const ServerErrorScreen();
           }
-          if (state is HomeScreenGetUserDataError) {
-            return state.msg == ErrorsString.noInternet
-                ? const NoConnectionScreen()
-                : const ServerErrorScreen();
-          }
-          if (state is HomeScreenGetMonitorsError) {
-            return state.msg == ErrorsString.noInternet
-                ? const NoConnectionScreen()
-                : const ServerErrorScreen();
-          }
+
           return Scaffold(
-            body: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                buildTopContainer(context),
-                vericalGab(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                      start: 20.0,
-                      top: 8.0,
-                      bottom: 8.0,
-                    ),
+            body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  buildTopContainer(context),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 24, 0, 24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildTitleAndMore(
-                          context,
-                          S.of(context).latest_courses,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: buildTitleAndMore(
+                            context,
+                            S.of(context).latest_courses,
+                          ),
                         ),
-                        vericalGab(),
+                        const SizedBox(height: 16),
                         buildMyCoursesSection(context),
-                        vericalGab(val: 5),
-                        buildTitleAndMore(
-                          context,
-                          S.of(context).monitors_of_the_week,
+                        const SizedBox(height: 32),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: buildTitleAndMore(
+                            context,
+                            S.of(context).monitors_of_the_week,
+                          ),
                         ),
-                        vericalGab(val: 5),
+                        const SizedBox(height: 16),
                         buildMonitorsSection(context),
+                        const SizedBox(height: 24),
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
@@ -93,3 +85,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+

@@ -1,100 +1,141 @@
 import 'package:e_learning/generated/l10n.dart';
+import 'package:e_learning/src/core/utils/app_color.dart';
 import 'package:e_learning/src/features/home/presentation/cubit/courses_cubit.dart';
 import '../../../../core/utils/consts/screen_sizes.dart';
 import '../../../../core/utils/widgets/app_widgets.dart';
 import '../pages/home_screen/cubit/home_screen_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 Container buildTopContainer(BuildContext context) {
+  final cubit = HomeScreenCubit.get(context);
   return Container(
-    padding: const EdgeInsetsDirectional.all(10.0),
-    height: ScreenSizes.getHieght(context) / 4,
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+    height: ScreenSizes.getHieght(context) / 3.8,
     width: double.infinity,
     decoration: BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          HexColor('#1f2e3c'),
-          HexColor('#162534'),
-          HexColor('#0c1c2c'),
+          AppColor.darkBackground1,
+          AppColor.darkBackground2,
+          AppColor.darkBackground3,
         ],
       ),
+      borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
     ),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            const CircleAvatar(
-              radius: 25,
-              child: Icon(Icons.wallet),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const CircleAvatar(
+                radius: 22,
+                backgroundColor: Colors.transparent,
+                child: Icon(Icons.person_rounded, color: Colors.white),
+              ),
             ),
-            horizentalGab(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).welcome_back,
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16.0,
-                      ),
+            horizentalGab(val: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    S.of(context).welcome_back,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.6),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    "${cubit.userName} !🤘🏽",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                vericalGab(val: 5),
-                Text(
-                  "${HomeScreenCubit.get(context).userName} !🤘🏽",
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
-                        fontSize: 18.0,
-                      ),
-                ),
-              ],
+                child: const Icon(Icons.notifications_outlined, color: Colors.white, size: 20),
+              ),
             ),
           ],
         ),
-        vericalGab(val: 15),
+        const Spacer(),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).best_courses_that,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 24,
-                        color: Colors.white,
-                        height: .5,
-                      ),
-                ),
-                Text(
-                  S.of(context).suites_to_you,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    S.of(context).best_courses_that,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 26,
+                      color: Colors.white,
+                      height: 1.1,
+                    ),
+                  ),
+                  Text(
+                    S.of(context).suites_to_you,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 26,
+                      color: Colors.white,
+                      height: 1.1,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const Spacer(),
-            IconButton(
-              onPressed: () {
+            GestureDetector(
+              onTap: () {
                 HomeLayoutCubit.get(context).changeNavBar(1);
               },
-              icon: const Icon(
-                Icons.arrow_forward_outlined,
-                color: Colors.white,
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: AppColor.primary,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColor.primary.withOpacity(0.3),
+                      blurRadius: 15,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppColor.textBlack,
+                  size: 20,
+                ),
               ),
-            )
+            ),
           ],
         ),
       ],
     ),
   );
 }
+

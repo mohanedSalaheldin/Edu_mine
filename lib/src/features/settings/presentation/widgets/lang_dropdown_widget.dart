@@ -47,7 +47,7 @@ DropdownMenuEntry<String> buildDropdownMenuEntry({
     value: value,
     label: label,
     style: ButtonStyle(
-      textStyle: MaterialStatePropertyAll(
+      textStyle: WidgetStatePropertyAll(
         Theme.of(context).textTheme.bodySmall!.copyWith(
               fontWeight: FontWeight.w700,
               fontSize: 16.0,

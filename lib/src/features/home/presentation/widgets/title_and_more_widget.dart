@@ -1,44 +1,47 @@
 import 'package:e_learning/generated/l10n.dart';
-
-import '../../../../core/utils/widgets/app_widgets.dart';
+import 'package:e_learning/src/core/utils/app_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
 Row buildTitleAndMore(BuildContext context, String title) {
   return Row(
     children: [
-      Text(
-        title,
-        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              fontWeight: FontWeight.w700,
-              fontSize: 20.0,
-              height: .8,
-            ),
+      Expanded(
+        child: Text(
+          title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontWeight: FontWeight.w800,
+            fontSize: 22.sp,
+          ),
+        ),
       ),
-      const Spacer(),
-      InkWell(
-        onTap: () {},
+      TextButton(
+        onPressed: () {},
+        style: TextButton.styleFrom(
+          foregroundColor: AppColor.textGrey,
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               S.of(context).see_all,
-              style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 16.0,
-                    height: .8,
-                  ),
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-            horizentalGab(val: 5.0),
-            const Icon(
+            SizedBox(width: 4.w),
+            Icon(
               Icons.arrow_forward_ios_rounded,
-              size: 15.0,
-              // color: Colors.white,
+              size: 12.sp,
             ),
-            horizentalGab(),
           ],
         ),
       )
     ],
   );
 }
+

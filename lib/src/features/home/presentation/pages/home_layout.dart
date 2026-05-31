@@ -1,5 +1,4 @@
 import 'package:e_learning/generated/l10n.dart';
-import 'package:e_learning/src/data_entry.dart';
 import 'package:e_learning/src/features/allCourses/presentation/pages/all_courses_screen.dart';
 import 'package:e_learning/src/features/home/presentation/pages/home_screen/home_screen.dart';
 import 'package:e_learning/src/features/myCourses/presentation/pages/my_courses_screen.dart';
